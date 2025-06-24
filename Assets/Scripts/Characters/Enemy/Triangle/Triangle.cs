@@ -34,6 +34,7 @@ public class Triangle : MonoBehaviour
     {
         if(InRange(target, 0.5f))
         {
+            Debug.Log("Target in range, switching to attack state");
             stateMachine.SetState(new TriangleAttackState(animator, this, 1f));
         }
         else
