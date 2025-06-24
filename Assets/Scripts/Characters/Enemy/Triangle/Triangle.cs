@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Triangle : MonoBehaviour
 {
+    [SerializeField]
+    private EnemySO enemyData;
     public Animator animator;
     public StateMachine stateMachine;
 
