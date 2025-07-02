@@ -3,30 +3,30 @@ using UnityEngine;
 
 public class Orc : MonoBehaviour
 {
-    [SerializeField] public EnemySO enemyData;
+    [SerializeField]
+    public EnemySO enemyData; // Reference to the EnemySO scriptable object containing enemy data
 
     public Animator animator;
-    public StateMachine stateMachine;
 
+    public StateMachine stateMachine;
     public Transform target;
     public Transform towerTarget;
 
-    public float distanceToTarget = 0.5f;
-    public LayerMask targetLayerMask;
+    private bool isChasing = false; // Flag to check if the orc is chasing the target
     public float chaseSpeed;
-
-    public bool isChasing = false;
-
+    public float distanceToTarget = 0.5f; // Distance to the target to trigger attack
     private Coroutine stopChaseCoroutine;
+    public LayerMask targetLayerMask;
 
     private void Awake()
     {
-        chaseSpeed = enemyData.speed * 2;
+        chaseSpeed = enemyData.speed * 2; // Set chase speed from the enemy data
         stateMachine = GetComponent<StateMachine>();
         animator = GetComponent<Animator>();
 
-        towerTarget = GameObject.FindGameObjectWithTag("Tower").transform;
-        target = towerTarget;
+        GameObject tower = GameObject.FindGameObjectWithTag("Tower");
+        if (tower == null)
+            target = tower.transform;
     }
 
     private void Start()
@@ -36,16 +36,16 @@ public class Orc : MonoBehaviour
             Debug.LogError("Orc missing essential components");
             return;
         }
-
+        towerTarget = GameObject.FindGameObjectWithTag("Tower").transform;
         stateMachine.SetState(new OrcMoveState(animator, this));
+
     }
+
 
     private void Update()
     {
-        Debug.DrawRay(transform.position, (target.position - transform.position).normalized * distanceToTarget, Color.red);
         stateMachine.Update();
-
-        if (isChasing && target != null)
+        if (isChasing)
         {
             float distance = Vector2.Distance(transform.position, target.position);
             if (distance <= distanceToTarget)
@@ -55,50 +55,42 @@ public class Orc : MonoBehaviour
         }
     }
 
-    public void StartChasing(Transform player)
+    void OnTriggerEnter2D(Collider2D other)
     {
-        if (stopChaseCoroutine != null)
+        if (other.CompareTag("Player"))
         {
-            StopCoroutine(stopChaseCoroutine);
-            stopChaseCoroutine = null;
+            Debug.Log("Player vào vùng phát hiện");
+            target = other.transform;
+            isChasing = true;
+            stateMachine.SetState(new OrcMoveState(animator, this));
+            return;
         }
-
-        Debug.Log("Orc: Bắt đầu đuổi Player");
-        target = player;
-        isChasing = true;
-        stateMachine.SetState(new OrcMoveState(animator, this));
-    }
-
-    public void StopChasingAfterDelay(float delay = 0.5f)
-    {
-        if (stopChaseCoroutine == null)
-            stopChaseCoroutine = StartCoroutine(StopChase(delay));
-    }
-
-    private IEnumerator StopChase(float delay)
-    {
-        yield return new WaitForSeconds(delay);
-        Debug.Log("Orc: Ngừng đuổi, quay về tower");
-        target = towerTarget;
-        isChasing = false;
-        stateMachine.SetState(new OrcMoveState(animator, this));
-        stopChaseCoroutine = null;
-    }
-
-    public void TryAttackTower(Transform tower)
-    {
-        RaycastHit2D hit = Physics2D.Raycast(
-            transform.position,
-            tower.position - transform.position,
-            distanceToTarget,
-            targetLayerMask
-        );
-
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, other.transform.position - transform.position, distanceToTarget, targetLayerMask);
         if (hit.collider != null && hit.collider.CompareTag("Tower"))
         {
-            Debug.Log("Orc: Attack Tower");
-            target = tower;
+            Debug.Log("Entered Tower");
             stateMachine.SetState(new OrcAttackState(animator, this, enemyData.attackCooldown));
+        }
+    }
+
+    void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            Debug.Log("Player rời khỏi vùng");
+
+            if (stopChaseCoroutine != null)
+            {
+                StopCoroutine(stopChaseCoroutine);
+            }
+            stopChaseCoroutine = StartCoroutine(DelayStopChasing());
+            return;
+        }
+
+        if (other.CompareTag("Tower"))
+        {
+            Debug.Log("Exited Tower");
+            stateMachine.SetState(new OrcMoveState(animator, this));
         }
     }
 
@@ -109,5 +101,15 @@ public class Orc : MonoBehaviour
         {
             castle.TakeDamage(enemyData.attackDamage);
         }
+    }
+
+    private IEnumerator DelayStopChasing()
+    {
+        yield return new WaitForSeconds(0.75f); // chờ 2 giây
+
+        target = towerTarget;
+        isChasing = false;
+        Debug.Log("Ngừng chase sau 2 giây");
+        stateMachine.SetState(new OrcMoveState(animator, this));
     }
 }

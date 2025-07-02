@@ -1,38 +1,50 @@
-﻿using UnityEngine;
+﻿//using UnityEngine;
 
-public class OrcPOV : MonoBehaviour
-{
-    private Orc orc;
+//public class OrcPOV : MonoBehaviour
+//{
+//    [HideInInspector] public Orc orc;
 
-    private void Awake()
-    {
-        orc = GetComponentInParent<Orc>();
-    }
+//    private void OnTriggerEnter2D(Collider2D other)
+//    {
+//        if (other.CompareTag("Player"))
+//        {
+//            Debug.Log("Player vào vùng phát hiện");
+//            orc.target = other.transform;
+//            orc.isChasing = true;
 
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (orc == null) return;
+//            orc.stateMachine.SetState(new OrcMoveState(orc.animator, orc));
+//            return;
+//        }
 
-        if (other.CompareTag("Player"))
-        {
-            Debug.Log("OrcPOV: Phát hiện Player");
-            orc.StartChasing(other.transform);
-        }
-        else if (other.CompareTag("Tower"))
-        {
-            Debug.Log("OrcPOV: Phát hiện Tower");
-            orc.TryAttackTower(other.transform);
-        }
-    }
+//        RaycastHit2D hit = Physics2D.Raycast(
+//            orc.transform.position,
+//            other.transform.position - orc.transform.position,
+//            orc.distanceToTarget,
+//            orc.targetLayerMask
+//        );
 
-    private void OnTriggerExit2D(Collider2D other)
-    {
-        if (orc == null) return;
+//        if (hit.collider != null && hit.collider.CompareTag("Tower"))
+//        {
+//            Debug.Log("Entered Tower");
+//            orc.stateMachine.SetState(new OrcAttackState(orc.animator, orc, orc.enemyData.attackCooldown));
+//        }
+//    }
 
-        if (other.CompareTag("Player"))
-        {
-            Debug.Log("OrcPOV: Player rời vùng");
-            orc.StopChasingAfterDelay(); // sẽ delay 2s trong Orc.cs
-        }
-    }
-}
+//    private void OnTriggerExit2D(Collider2D other)
+//    {
+//        if (other.CompareTag("Player"))
+//        {
+//            Debug.Log("Player rời khỏi vùng");
+//            orc.target = orc.towerTarget;
+//            orc.isChasing = false;
+//            orc.stateMachine.SetState(new OrcMoveState(orc.animator, orc));
+//            return;
+//        }
+
+//        if (other.CompareTag("Tower"))
+//        {
+//            Debug.Log("Exited Tower");
+//            orc.stateMachine.SetState(new OrcMoveState(orc.animator, orc));
+//        }
+//    }
+//}
