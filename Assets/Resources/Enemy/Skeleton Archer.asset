@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 177e9bcb7773d02418d6d82f58b9427d, type: 3}
-  m_Name: Orc
+  m_Name: Skeleton Archer
   m_EditorClassIdentifier: 
-  enemyName: Orc
-  health: 10
+  enemyName: Skeleton Archer
+  health: 15
   speed: 0.75
-  attackDamage: 3
-  attackCooldown: 2
+  attackDamage: 2
+  attackCooldown: 1.75
   enemySprite: {fileID: 0}

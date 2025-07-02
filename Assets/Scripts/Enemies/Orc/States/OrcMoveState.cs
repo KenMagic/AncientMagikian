@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class OrcMoveState : IState
 {
@@ -31,5 +31,6 @@ public class OrcMoveState : IState
     {
         Debug.Log("Exiting Orc Move State");
         anim.SetBool("isMoving", true);
+        anim.SetBool("isAttacking", false);
     }
 }

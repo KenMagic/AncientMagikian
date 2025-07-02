@@ -52,5 +52,6 @@ public class OrcAttackState : IState
     {
         Debug.Log("Exiting Orc Attack State");
         anim.SetBool("isAttacking", false);
+        anim.SetBool("isAttacking", true);
     }
 }

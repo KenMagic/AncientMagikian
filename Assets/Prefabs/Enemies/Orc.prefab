@@ -32,7 +32,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.15, y: 0.41, z: 0}
-  m_LocalScale: {x: -0.6, y: 0.6, z: 1}
+  m_LocalScale: {x: -0.4, y: 0.4, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2627049449306671521}
@@ -156,12 +156,11 @@ MonoBehaviour:
   stateMachine: {fileID: 0}
   target: {fileID: 0}
   towerTarget: {fileID: 0}
+  chaseSpeed: 0
   distanceToTarget: 0.6
   targetLayerMask:
     serializedVersion: 2
     m_Bits: 64
-  chaseSpeed: 0
-  isChasing: 0
 --- !u!95 &7433812279132727195
 Animator:
   serializedVersion: 7
@@ -234,7 +233,7 @@ GameObject:
   - component: {fileID: 2627049449306671521}
   - component: {fileID: 4483023524378242831}
   m_Layer: 0
-  m_Name: OPV
+  m_Name: POV
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
