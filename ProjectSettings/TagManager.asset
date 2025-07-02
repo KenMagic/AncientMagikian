@@ -10,10 +10,11 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - PlayerLayer
   - Water
   - UI
-  - 
+  - BulletLayer
+  - NpcTarget
   - 
   - 
   - 

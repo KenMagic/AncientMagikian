@@ -17,18 +17,17 @@ public class Triangle : MonoBehaviour
     private void Awake()
     {
         if (stateMachine == null)
-        {
             stateMachine = GetComponent<StateMachine>();
-        }
+
+        if (animator == null)
+            animator = GetComponent<Animator>();
 
         if (target == null)
-        {
             target = defaultTarget;
-        }
     }
-    void Start()
+    private void Start()
     {
-        stateMachine.SetState(new TriangleMoveState(animator, this, speed, target));
+        stateMachine.SetState(new TriangleMoveState(animator, this, enemyData.speed, target));
     }
 
     // Update is called once per frame
