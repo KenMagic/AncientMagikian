@@ -20,7 +20,7 @@ public class Orc : MonoBehaviour
 
     private void Awake()
     {
-        chaseSpeed = enemyData.speed * 2; // Set chase speed from the enemy data
+        chaseSpeed = enemyData.speed * 1.5f; // Set chase speed from the enemy data
         stateMachine = GetComponent<StateMachine>();
         animator = GetComponent<Animator>();
 
@@ -61,6 +61,7 @@ public class Orc : MonoBehaviour
         {
             Debug.Log("Player vào vùng phát hiện");
             target = other.transform;
+            enemyData.speed = chaseSpeed;
             isChasing = true;
             stateMachine.SetState(new OrcMoveState(animator, this));
             return;
@@ -110,6 +111,7 @@ public class Orc : MonoBehaviour
         target = towerTarget;
         isChasing = false;
         Debug.Log("Ngừng chase sau 2 giây");
+        enemyData.speed = enemyData.speed / 1.5f;
         stateMachine.SetState(new OrcMoveState(animator, this));
     }
 }
