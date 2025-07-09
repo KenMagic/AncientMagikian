@@ -163,7 +163,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a509856ada5b49b43bbd21f67dff6a10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  orcPrefab: {fileID: 5818302102346109445, guid: cf8103d99990020418b33b421d525a29, type: 3}
   skeletonArcherPrefab: {fileID: 3304772024767664111, guid: 0a82fd80b327346498d3896f605f8722, type: 3}
   castle: {fileID: 917205239}
 --- !u!1 &883412556

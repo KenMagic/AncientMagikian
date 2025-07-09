@@ -16,5 +16,5 @@ MonoBehaviour:
   health: 15
   speed: 0.75
   attackDamage: 2
-  attackCooldown: 1.75
+  attackCooldown: 0.5
   enemySprite: {fileID: 0}

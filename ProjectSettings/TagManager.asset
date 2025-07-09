@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Tile
   - Tower
+  - POV
   layers:
   - Default
   - TransparentFX
@@ -15,8 +16,7 @@ TagManager:
   - UI
   - BulletLayer
   - NpcTarget
-  - 
-  - 
+  - Tower
   - 
   - 
   - 

@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Attack
+  m_Name: PlayerAttack
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
@@ -22,15 +22,15 @@ AnimationClip:
     curve:
     - time: 0
       value: {fileID: -5747784035168019909, guid: a8903cc706719544087674e28a27bf7f, type: 3}
-    - time: 0.15
+    - time: 0.1
       value: {fileID: 8196637821053982142, guid: a8903cc706719544087674e28a27bf7f, type: 3}
-    - time: 0.3
+    - time: 0.2
       value: {fileID: 6854456305891230957, guid: a8903cc706719544087674e28a27bf7f, type: 3}
-    - time: 0.45
+    - time: 0.3
       value: {fileID: -3441655991679628507, guid: a8903cc706719544087674e28a27bf7f, type: 3}
-    - time: 0.6
+    - time: 0.4
       value: {fileID: 1149191044335307846, guid: a8903cc706719544087674e28a27bf7f, type: 3}
-    - time: 0.75
+    - time: 0.5
       value: {fileID: -4662628362427731083, guid: a8903cc706719544087674e28a27bf7f, type: 3}
     attribute: m_Sprite
     path: 
@@ -65,7 +65,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.76666665
+    m_StopTime: 0.51666665
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0

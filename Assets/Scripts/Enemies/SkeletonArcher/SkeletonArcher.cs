@@ -48,10 +48,6 @@ public class SkeletonArcher : MonoBehaviour
         if (isChasing && target != null)
         {
             float distance = Vector2.Distance(transform.position, target.position);
-            if (distance <= distanceToTarget)
-            {
-                stateMachine.SetState(new SkeletonArcherAttackState(animator, this, enemyData.attackCooldown));
-            }
         }
     }
 
@@ -81,6 +77,7 @@ public class SkeletonArcher : MonoBehaviour
             Debug.Log("Player rời SkeletonArcher");
             if (stopChaseCoroutine != null) StopCoroutine(stopChaseCoroutine);
             stopChaseCoroutine = StartCoroutine(DelayStopChasing());
+            stateMachine.SetState(new SkeletonArcherMoveState(animator, this));
             return;
         }
 
@@ -93,7 +90,7 @@ public class SkeletonArcher : MonoBehaviour
 
     private IEnumerator DelayStopChasing()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
         target = towerTarget;
         isChasing = false;
         stateMachine.SetState(new SkeletonArcherMoveState(animator, this));
@@ -113,7 +110,7 @@ public class SkeletonArcher : MonoBehaviour
         if (arrowPrefab == null || shootPoint == null || target == null) return;
 
         GameObject arrow = Instantiate(arrowPrefab, shootPoint.position, Quaternion.identity);
-        arrow.GetComponent<Arrow>().SetTarget(target); // Quan trọng!
+        arrow.GetComponent<Arrow>().SetTarget(target);
     }
 
 }
