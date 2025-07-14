@@ -18,7 +18,7 @@ public class PlayerHealth : MonoBehaviour
         currentHealth = maxHealth;
         animator = GetComponent<Animator>();
         UpdateHealthBar();
-        StartCoroutine(ReduceHealthPeriodicallyEvery3Seconds()); // Bắt đầu coroutine giảm máu mỗi 3 giây
+        // StartCoroutine(ReduceHealthPeriodicallyEvery3Seconds()); // Bắt đầu coroutine giảm máu mỗi 3 giây
     }
 
     public void TakeDamage(int damage)
@@ -82,12 +82,12 @@ public class PlayerHealth : MonoBehaviour
         animator.ResetTrigger("Hurt"); // Reset trigger Hurt sau khi animation hoàn thành
     }
 
-    IEnumerator ReduceHealthPeriodicallyEvery3Seconds()
-    {
-        while (!isDead) // Tiếp tục giảm máu cho đến khi chết
-        {
-            yield return new WaitForSeconds(3f); // Chờ 3 giây
-            TakeDamage(1); // Gọi hàm TakeDamage để giảm 1 máu
-        }
-    }
+    // IEnumerator ReduceHealthPeriodicallyEvery3Seconds()
+    // {
+    //     while (!isDead) // Tiếp tục giảm máu cho đến khi chết
+    //     {
+    //         yield return new WaitForSeconds(3f); // Chờ 3 giây
+    //         TakeDamage(1); // Gọi hàm TakeDamage để giảm 1 máu
+    //     }
+    // }
 }

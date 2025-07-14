@@ -15,6 +15,7 @@ public class OrcMoveState : IState
 
     public void OnEnter()
     {
+        Debug.Log("OrcMoveState: OnEnter");
         anim.SetBool("isMoving", true);
     }
 
