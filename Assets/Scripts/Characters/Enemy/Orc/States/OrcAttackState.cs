@@ -6,31 +6,31 @@ public class OrcAttackState : IState
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private Animator anim;
     private Orc orc;
+
     private float attackCooldown = 1.0f; // Cooldown time between attacks
-    private int targetType; // 0 = Tower, 1 = Player
-
     private float cooldownTimer = 0f;
-
-    public OrcAttackState(Animator anim, Orc orc, float attackCooldown, int targetType)
+    private string targetType = "isAttackTower"; // Default attack type, can be set dynamically
+    public OrcAttackState(Animator anim, Orc orc, float attackCooldown, string targetType)
     {
         this.anim = anim;
         this.orc = orc;
         this.attackCooldown = orc.enemyData.attackCooldown;
-        this.targetType = targetType;
         this.cooldownTimer = 0f;
+        this.targetType = targetType;
     }
 
     public void OnEnter()
     {
-        Debug.Log("Orc Attack State Entered: " + targetType + ":" + attackCooldown);
-        anim.SetInteger("targetType", targetType);
+        Debug.Log("Orc Attack State Entered:" + attackCooldown);
+        Debug.Log("checkMOve - attack state - ENTER");
         anim.SetBool("isMoving", false);
+        anim.SetTrigger(targetType);
+
         cooldownTimer = 0f;
     }
 
     public void OnExit()
     {
-        anim.SetInteger("targetType", 0);
         anim.SetBool("isMoving", true);
     }
 
@@ -42,24 +42,20 @@ public class OrcAttackState : IState
         {
             SetAttackAnimation(targetType);
             Attack();
-        }
-        else
-        {
-            SetAttackAnimation(0);
+            cooldownTimer = attackCooldown;
         }
     }
 
     #region private methods
-    private void SetAttackAnimation(int targetType)
+    private void SetAttackAnimation(string targetType)
     {
-        anim.SetInteger("targetType", targetType);
+        anim.SetTrigger(targetType);
     }
 
     private void Attack()
     {
         Debug.Log("Orc is attacking!");
         orc.DealDamage();
-        cooldownTimer = attackCooldown;
     }
     #endregion
 }

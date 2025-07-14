@@ -19,12 +19,16 @@ public class BulletController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        // Tạo hiệu ứng nổ
-        if (explosionPrefab != null)
+        if (collision.CompareTag("Hitbox"))
         {
-            Instantiate(explosionPrefab, transform.position, Quaternion.identity);
-        }
+            if (explosionPrefab != null)
+            {
+                Instantiate(explosionPrefab, transform.position, Quaternion.identity);
+            }
 
-        Destroy(gameObject); // Hủy đạn
+            Destroy(gameObject); // Hủy đạn
+        }
+        // Tạo hiệu ứng nổ
+        
     }
 }

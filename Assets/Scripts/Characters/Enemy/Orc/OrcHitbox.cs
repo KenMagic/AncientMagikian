@@ -3,6 +3,8 @@
 public class OrcHitbox : MonoBehaviour
 {
     private Orc orc;
+    private string currentAttackState = "";
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Awake()
     {
@@ -16,18 +18,21 @@ public class OrcHitbox : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+
         if (collision.CompareTag(tag:"Player"))
         {
             Debug.Log("Orc hitbox: Player vào vùng tấn công");
-            orc.SetAttackState(1);
+            orc.SetAttackState("isAttackPlayer");
             orc.DealDamage();
+            currentAttackState = "isAttackPlayer"; // Cập nhật trạng thái tấn công hiện tại
         }
 
         if (collision.CompareTag(tag:"Tower"))
         {
             Debug.Log("Orc hitbox: Tower vào vùng tấn công");
-            orc.SetAttackState(2);
+            orc.SetAttackState("isAttackTower");
             orc.DealDamage();
+            currentAttackState = "isAttackTower"; // Cập nhật trạng thái tấn công hiện tại
         }
 
         if (collision.CompareTag(tag: "PlayerAttack"))
@@ -39,6 +44,12 @@ public class OrcHitbox : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
+        if (!string.IsNullOrEmpty(currentAttackState) && collision.CompareTag("PlayerAttack"))
+        {
+            orc.SetAttackState(currentAttackState); // Giữ nguyên trạng thái tấn công khi rời khỏi hitbox
+            currentAttackState = ""; // Reset trạng thái tấn công
+            return;
+        }
         orc.SetMoveState(); // Quay lại di chuyển khi không còn mục tiêu
     }
 }

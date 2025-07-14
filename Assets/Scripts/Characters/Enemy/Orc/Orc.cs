@@ -56,7 +56,7 @@ public class Orc : MonoBehaviour
         Debug.Log("Orc nhận sát thương!");
     }
 
-    public void SetAttackState(int type)
+    public void SetAttackState(string type)
     {
         stateMachine.SetState(new OrcAttackState(animator, this, enemyData.attackCooldown, type));
     }

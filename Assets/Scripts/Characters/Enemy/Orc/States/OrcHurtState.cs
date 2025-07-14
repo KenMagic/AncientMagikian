@@ -13,7 +13,7 @@ public class OrcHurtState : IState
 
     public void OnEnter()
     {
-        anim.SetTrigger("Hurt");
+        anim.SetTrigger("isHurt");
         TakeDamage();
 
     }
