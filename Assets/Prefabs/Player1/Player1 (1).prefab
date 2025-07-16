@@ -47,6 +47,7 @@ GameObject:
   - component: {fileID: 8564576981319908726}
   - component: {fileID: 3389212430251535220}
   - component: {fileID: 3523624556102566522}
+  - component: {fileID: 5071887439519354158}
   m_Layer: 3
   m_Name: Player1 (1)
   m_TagString: Untagged
@@ -160,10 +161,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 914baeb760d9eb44098fa452bf0469c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 4056733305294757497, guid: 61a6758699fd62a4da2e127f40b08863, type: 3}
-  firePoint: {fileID: 5470962578744090095}
   bulletSpeed: 10
   specialCooldown: 3
+  firePoint: {fileID: 5470962578744090095}
+  bulletPrefab: {fileID: 4056733305294757497, guid: 61a6758699fd62a4da2e127f40b08863, type: 3}
 --- !u!58 &5803470525791998243
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -252,8 +253,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec957f90dcc03644bbf3b8c4499d31b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 5
   healthBar: {fileID: 684502631624670703}
+--- !u!114 &5071887439519354158
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5905939180661674024}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8b77ecffafda4d46b64fafb830fd4f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 5
+  damage: 1
+  fireRate: 1
+  moveSpeed: 10
 --- !u!1001 &3222897060479948301
 PrefabInstance:
   m_ObjectHideFlags: 0

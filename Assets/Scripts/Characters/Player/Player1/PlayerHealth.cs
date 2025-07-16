@@ -1,24 +1,141 @@
+//using UnityEngine;
+//using UnityEngine.UI;
+//using System.Collections;
+
+//public class PlayerHealth : MonoBehaviour
+//{
+//    private int currentHealth;
+//    private bool isDead = false;
+
+//    private Animator animator;
+//    private PlayerStats playerStats;
+
+//    public Image healthBar; // Thanh máu trên UI
+
+//    void Start()
+//    {
+//        animator = GetComponent<Animator>();
+//        playerStats = GetComponent<PlayerStats>();
+
+//        if (playerStats == null)
+//        {
+//            Debug.LogError("PlayerStats not found on Player!");
+//            return;
+//        }
+
+//        currentHealth = playerStats.maxHealth;
+//        UpdateHealthBar();
+//    }
+
+//    public void TakeDamage(int damage)
+//    {
+//        if (isDead) return;
+
+//        currentHealth -= damage;
+
+//        if (currentHealth > 0)
+//        {
+//            animator.SetTrigger("Hurt");
+//            StartCoroutine(ResetHurtTriggerAfterDelay());
+//        }
+//        else
+//        {
+//            currentHealth = 0;
+//            Die();
+//        }
+
+//        UpdateHealthBar();
+//    }
+
+//    public void Heal(int amount)
+//    {
+//        if (isDead) return;
+
+//        currentHealth += amount;
+//        if (currentHealth > playerStats.maxHealth)
+//        {
+//            currentHealth = playerStats.maxHealth;
+//        }
+
+//        UpdateHealthBar();
+//    }
+
+//    private void UpdateHealthBar()
+//    {
+//        if (healthBar != null && playerStats != null)
+//        {
+//            healthBar.fillAmount = (float)currentHealth / playerStats.maxHealth;
+//        }
+//    }
+
+//    private void Die()
+//    {
+//        isDead = true;
+//        animator.SetTrigger("Die");
+//        UpdateHealthBar();
+
+//        // Vô hiệu hóa chuyển động và bắn
+//        var move = GetComponent<Player1Movement>();
+//        if (move != null) move.enabled = false;
+
+//        var shoot = GetComponent<PlayerShoot>();
+//        if (shoot != null) shoot.enabled = false;
+
+//        Rigidbody2D rb = GetComponent<Rigidbody2D>();
+//        if (rb != null) rb.linearVelocity = Vector2.zero;
+
+//        StartCoroutine(WaitAndHandleDeath());
+//    }
+
+//    IEnumerator WaitAndHandleDeath()
+//    {
+//        yield return new WaitForSeconds(2f);
+//        Debug.Log("Người chơi đã chết!");
+//        // TODO: Load lại scene hoặc hiển thị menu thua
+//    }
+
+//    IEnumerator ResetHurtTriggerAfterDelay()
+//    {
+//        yield return new WaitForSeconds(0.5f);
+//        animator.ResetTrigger("Hurt");
+//    }
+//}
+
+
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 
 public class PlayerHealth : MonoBehaviour
 {
-    public int maxHealth = 5;
     private int currentHealth;
-
-    private Animator animator;
     private bool isDead = false;
 
-    // Tham chiếu đến Image của thanh máu
-    public Image healthBar;
+    private Animator animator;
+    private PlayerStats playerStats;
+
+    public Image healthBar; // Thanh máu trên UI
+
+    [Header("Tự động trừ máu định kỳ")]
+    public float healthReduceInterval = 10f;  // thời gian (giây) giữa mỗi lần trừ máu
+    public int damagePerInterval = 1;          // lượng máu trừ mỗi lần
 
     void Start()
     {
-        currentHealth = maxHealth;
         animator = GetComponent<Animator>();
+        playerStats = GetComponent<PlayerStats>();
+
+        if (playerStats == null)
+        {
+            Debug.LogError("PlayerStats not found on Player!");
+            return;
+        }
+
+        currentHealth = playerStats.maxHealth;
         UpdateHealthBar();
-        //StartCoroutine(ReduceHealthPeriodicallyEvery3Seconds()); // Bắt đầu coroutine giảm máu mỗi 3 giây
+
+        // Bắt đầu coroutine trừ máu định kỳ
+        StartCoroutine(ReduceHealthPeriodically());
     }
 
     public void TakeDamage(int damage)
@@ -30,21 +147,35 @@ public class PlayerHealth : MonoBehaviour
         if (currentHealth > 0)
         {
             animator.SetTrigger("Hurt");
-            StartCoroutine(ResetHurtTriggerAfterDelay()); // Chờ và reset trigger Hurt
-            UpdateHealthBar();
+            StartCoroutine(ResetHurtTriggerAfterDelay());
         }
         else
         {
+            currentHealth = 0;
             Die();
         }
+
+        UpdateHealthBar();
+    }
+
+    public void Heal(int amount)
+    {
+        if (isDead) return;
+
+        currentHealth += amount;
+        if (currentHealth > playerStats.maxHealth)
+        {
+            currentHealth = playerStats.maxHealth;
+        }
+
+        UpdateHealthBar();
     }
 
     private void UpdateHealthBar()
     {
-        if (healthBar != null)
+        if (healthBar != null && playerStats != null)
         {
-            // Cập nhật fill amount dựa trên máu hiện tại (từ 0 đến 1)
-            healthBar.fillAmount = (float)currentHealth / maxHealth;
+            healthBar.fillAmount = (float)currentHealth / playerStats.maxHealth;
         }
     }
 
@@ -52,16 +183,14 @@ public class PlayerHealth : MonoBehaviour
     {
         isDead = true;
         animator.SetTrigger("Die");
-        UpdateHealthBar(); // Cập nhật thành 0 khi chết
+        UpdateHealthBar();
 
-        // Vô hiệu hóa di chuyển và bắn
         var move = GetComponent<Player1Movement>();
         if (move != null) move.enabled = false;
 
         var shoot = GetComponent<PlayerShoot>();
         if (shoot != null) shoot.enabled = false;
 
-        // Dừng vận tốc nếu có Rigidbody2D
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
         if (rb != null) rb.linearVelocity = Vector2.zero;
 
@@ -70,24 +199,23 @@ public class PlayerHealth : MonoBehaviour
 
     IEnumerator WaitAndHandleDeath()
     {
-        yield return new WaitForSeconds(2f); // Chờ animation Die kết thúc
-
+        yield return new WaitForSeconds(2f);
         Debug.Log("Người chơi đã chết!");
-        // TODO: Tải lại scene hoặc hiển thị menu thua
+        // TODO: Load lại scene hoặc hiển thị menu thua
     }
 
     IEnumerator ResetHurtTriggerAfterDelay()
     {
-        yield return new WaitForSeconds(0.5f); // Chờ 0.5 giây (thời lượng animation Hurt)
-        animator.ResetTrigger("Hurt"); // Reset trigger Hurt sau khi animation hoàn thành
+        yield return new WaitForSeconds(0.5f);
+        animator.ResetTrigger("Hurt");
     }
 
-    // IEnumerator ReduceHealthPeriodicallyEvery3Seconds()
-    // {
-    //     while (!isDead) // Tiếp tục giảm máu cho đến khi chết
-    //     {
-    //         yield return new WaitForSeconds(3f); // Chờ 3 giây
-    //         TakeDamage(1); // Gọi hàm TakeDamage để giảm 1 máu
-    //     }
-    // }
+    IEnumerator ReduceHealthPeriodically()
+    {
+        while (!isDead)
+        {
+            yield return new WaitForSeconds(healthReduceInterval);
+            TakeDamage(damagePerInterval);
+        }
+    }
 }

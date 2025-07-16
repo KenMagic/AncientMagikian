@@ -17,18 +17,40 @@ public class BulletController : MonoBehaviour
         transform.position += (Vector3)(moveDirection * speed * Time.deltaTime);
     }
 
+    //private void OnTriggerEnter2D(Collider2D collision)
+    //{
+    //    if (collision.CompareTag("Hitbox"))
+    //    {
+    //        if (explosionPrefab != null)
+    //        {
+    //            Instantiate(explosionPrefab, transform.position, Quaternion.identity);
+    //        }
+
+    //        Destroy(gameObject); // Hủy đạn
+    //    }
+    //    // Tạo hiệu ứng nổ
+
+    //}
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Hitbox"))
         {
+            var target = collision.GetComponent<IDamagable>();
+            if (target != null)
+            {
+                float damage = FindObjectOfType<PlayerStats>().damage;
+                target.TakeDamage(damage);
+            }
+
             if (explosionPrefab != null)
             {
                 Instantiate(explosionPrefab, transform.position, Quaternion.identity);
             }
 
-            Destroy(gameObject); // Hủy đạn
+            Destroy(gameObject);
         }
-        // Tạo hiệu ứng nổ
-        
     }
+
+
 }
