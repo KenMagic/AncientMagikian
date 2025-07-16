@@ -5,6 +5,7 @@ public class OrcMoveState : IState
     private Animator anim;
     private Orc orc;
     private Transform target;
+    private Transform currentTarget;
 
     public OrcMoveState(Animator anim, Orc orc, Transform target)
     {
@@ -15,18 +16,20 @@ public class OrcMoveState : IState
 
     public void OnEnter()
     {
-        Debug.Log("OrcMoveState: OnEnter");
         anim.SetBool("isMoving", true);
         SetTarget();
+        currentTarget = target;
     }
 
     public void OnExit()
     {
         anim.SetBool("isMoving", false);
+        SetTarget();
     }
 
     public void OnUpdate()
     {
+        SetTarget();
         Vector3 dir = (target.position - orc.transform.position).normalized;
         orc.transform.position += dir * orc.enemyData.speed * Time.deltaTime;
 

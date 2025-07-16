@@ -32,14 +32,12 @@ public class Orc : MonoBehaviour, IDamagable
     {
         if (target == null || stateMachine == null || animator == null)
         {
-            Debug.LogError("Orc missing essential components");
             return;
         }
 
         towerTarget = GameObject.FindGameObjectWithTag("Tower")?.transform;
         if (towerTarget == null)
         {
-            Debug.LogError("Tower target not found");
             return;
         }
 
@@ -107,17 +105,14 @@ public class Orc : MonoBehaviour, IDamagable
     private IEnumerator ForgetTargetAfterDelay(float delay)
     {
         yield return new WaitForSeconds(delay);
-        Debug.Log("Orc quay lại Tower vì player biến mất.");
         ResetTargetToTower();
     }
 
     public void TakeDamage(float damage)
     {
         enemyData.health -= damage;
-        Debug.Log($"Orc nhận {damage} sát thương. Máu còn lại: {enemyData.health}");
         if (enemyData.health <= 0)
         {
-            Debug.Log("Orc đã chết!");
             animator.SetTrigger("isDeath");
             HideAfterDelay(1f);
         }

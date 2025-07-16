@@ -14,7 +14,7 @@ public class OrcHurtState : IState
     public void OnEnter()
     {
         anim.SetTrigger("isHurt");
-            }
+    }
 
     public void OnExit()
     {
