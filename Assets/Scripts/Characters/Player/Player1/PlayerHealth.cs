@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 
@@ -18,7 +18,7 @@ public class PlayerHealth : MonoBehaviour
         currentHealth = maxHealth;
         animator = GetComponent<Animator>();
         UpdateHealthBar();
-        // StartCoroutine(ReduceHealthPeriodicallyEvery3Seconds()); // Bắt đầu coroutine giảm máu mỗi 3 giây
+        //StartCoroutine(ReduceHealthPeriodicallyEvery3Seconds()); // Bắt đầu coroutine giảm máu mỗi 3 giây
     }
 
     public void TakeDamage(int damage)

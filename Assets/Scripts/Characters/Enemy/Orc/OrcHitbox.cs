@@ -23,7 +23,6 @@ public class OrcHitbox : MonoBehaviour
         {
             Debug.Log("Orc hitbox: Player vào vùng tấn công");
             orc.SetAttackState("isAttackPlayer");
-            orc.DealDamage();
             currentAttackState = "isAttackPlayer"; // Cập nhật trạng thái tấn công hiện tại
         }
 
@@ -31,7 +30,6 @@ public class OrcHitbox : MonoBehaviour
         {
             Debug.Log("Orc hitbox: Tower vào vùng tấn công");
             orc.SetAttackState("isAttackTower");
-            orc.DealDamage();
             currentAttackState = "isAttackTower"; // Cập nhật trạng thái tấn công hiện tại
         }
 

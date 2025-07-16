@@ -17,6 +17,7 @@ public class OrcMoveState : IState
     {
         Debug.Log("OrcMoveState: OnEnter");
         anim.SetBool("isMoving", true);
+        SetTarget();
     }
 
     public void OnExit()
@@ -34,6 +35,11 @@ public class OrcMoveState : IState
             1f,
             1f
         );
+    }
+
+    public void SetTarget()
+    {
+        target = orc.target;
     }
 
     #region private methods

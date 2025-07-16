@@ -1,25 +1,19 @@
 fileFormatVersion: 2
-guid: a8903cc706719544087674e28a27bf7f
+guid: ce0095fe78630774e990dc65db025848
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5747784035168019909
-    second: Orc-Attack01_0
+      213: -4010436053776415738
+    second: Orc rider-Block_0
   - first:
-      213: 8196637821053982142
-    second: Orc-Attack01_1
+      213: 4747101767086277178
+    second: Orc rider-Block_1
   - first:
-      213: 6854456305891230957
-    second: Orc-Attack01_2
+      213: 3669265480885726123
+    second: Orc rider-Block_2
   - first:
-      213: -3441655991679628507
-    second: Orc-Attack01_3
-  - first:
-      213: 1149191044335307846
-    second: Orc-Attack01_4
-  - first:
-      213: -4662628362427731083
-    second: Orc-Attack01_5
+      213: -515730540190657606
+    second: Orc rider-Block_3
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -52,7 +46,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -128,13 +122,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Orc-Attack01_0
+      name: Orc rider-Block_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 100
-        height: 100
+        x: 36
+        y: 39
+        width: 34
+        height: 33
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -143,20 +137,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b3a16228fd4cb30b0800000000000000
-      internalID: -5747784035168019909
+      spriteID: 604cc3448a11858c0800000000000000
+      internalID: -4010436053776415738
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Orc-Attack01_1
+      name: Orc rider-Block_1
       rect:
         serializedVersion: 2
-        x: 100
-        y: 0
-        width: 100
-        height: 100
+        x: 136
+        y: 39
+        width: 33
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -165,20 +159,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: eb5547cabae40c170800000000000000
-      internalID: 8196637821053982142
+      spriteID: a328ecbe7e711e140800000000000000
+      internalID: 4747101767086277178
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Orc-Attack01_2
+      name: Orc rider-Block_2
       rect:
         serializedVersion: 2
-        x: 200
-        y: 0
-        width: 100
-        height: 100
+        x: 236
+        y: 39
+        width: 33
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -187,20 +181,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: de4451991bbef1f50800000000000000
-      internalID: 6854456305891230957
+      spriteID: babebc6a389dbe230800000000000000
+      internalID: 3669265480885726123
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Orc-Attack01_3
+      name: Orc rider-Block_3
       rect:
         serializedVersion: 2
-        x: 300
-        y: 0
-        width: 100
-        height: 100
+        x: 336
+        y: 39
+        width: 34
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -209,52 +203,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 52b47d83c18cc30d0800000000000000
-      internalID: -3441655991679628507
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Orc-Attack01_4
-      rect:
-        serializedVersion: 2
-        x: 400
-        y: 0
-        width: 100
-        height: 100
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 64c8aa88a2fb2ff00800000000000000
-      internalID: 1149191044335307846
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Orc-Attack01_5
-      rect:
-        serializedVersion: 2
-        x: 500
-        y: 0
-        width: 100
-        height: 100
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 57375d145340b4fb0800000000000000
-      internalID: -4662628362427731083
+      spriteID: ab39d106ec1c7d8f0800000000000000
+      internalID: -515730540190657606
       vertices: []
       indices: 
       edges: []
@@ -263,7 +213,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 7a5903c7ff0d8b34c9be8803831bf65e
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -271,16 +221,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries:
-      - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":false,"gridCellCount":{"x":6.0,"y":1.0},"gridSpriteSize":{"x":100.0,"y":100.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
+      entries: []
     nameFileIdTable:
-      Orc-Attack01_0: -5747784035168019909
-      Orc-Attack01_1: 8196637821053982142
-      Orc-Attack01_2: 6854456305891230957
-      Orc-Attack01_3: -3441655991679628507
-      Orc-Attack01_4: 1149191044335307846
-      Orc-Attack01_5: -4662628362427731083
+      Orc rider-Block_0: -4010436053776415738
+      Orc rider-Block_1: 4747101767086277178
+      Orc rider-Block_2: 3669265480885726123
+      Orc rider-Block_3: -515730540190657606
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
