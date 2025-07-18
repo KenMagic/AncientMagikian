@@ -15,17 +15,19 @@ public class OrcMoveState : IState
 
     public void OnEnter()
     {
-        Debug.Log("OrcMoveState: OnEnter");
         anim.SetBool("isMoving", true);
+        SetTarget();
     }
 
     public void OnExit()
     {
         anim.SetBool("isMoving", false);
+        SetTarget();
     }
 
     public void OnUpdate()
     {
+        SetTarget();
         Vector3 dir = (target.position - orc.transform.position).normalized;
         orc.transform.position += dir * orc.enemyData.speed * Time.deltaTime;
 
@@ -34,6 +36,11 @@ public class OrcMoveState : IState
             1f,
             1f
         );
+    }
+
+    public void SetTarget()
+    {
+        target = orc.target;
     }
 
     #region private methods

@@ -12,7 +12,7 @@ public class OrcHitbox : MonoBehaviour
 
         if (orc == null)
         {
-            Debug.LogError("❌ Không tìm thấy component Orc trong OrcPOV! Check hierarchy.");
+            return;
         }
     }
 
@@ -21,24 +21,34 @@ public class OrcHitbox : MonoBehaviour
 
         if (collision.CompareTag(tag:"Player"))
         {
-            Debug.Log("Orc hitbox: Player vào vùng tấn công");
             orc.SetAttackState("isAttackPlayer");
-            orc.DealDamage();
-            currentAttackState = "isAttackPlayer"; // Cập nhật trạng thái tấn công hiện tại
+            currentAttackState = "isAttackPlayer";
         }
 
         if (collision.CompareTag(tag:"Tower"))
         {
-            Debug.Log("Orc hitbox: Tower vào vùng tấn công");
             orc.SetAttackState("isAttackTower");
-            orc.DealDamage();
-            currentAttackState = "isAttackTower"; // Cập nhật trạng thái tấn công hiện tại
+            currentAttackState = "isAttackTower";
         }
 
         if (collision.CompareTag(tag: "PlayerAttack"))
         {
-            Debug.Log("Orc hitbox: PlayerAttack vào vùng tấn công");
             orc.SetHurtState();
+        }
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.CompareTag(tag: "Player"))
+        {
+            orc.SetAttackState("isAttackPlayer");
+            currentAttackState = "isAttackPlayer";
+        }
+
+        if (collision.CompareTag(tag: "Tower"))
+        {
+            orc.SetAttackState("isAttackTower");
+            currentAttackState = "isAttackTower";
         }
     }
 
@@ -46,10 +56,10 @@ public class OrcHitbox : MonoBehaviour
     {
         if (!string.IsNullOrEmpty(currentAttackState) && collision.CompareTag("PlayerAttack"))
         {
-            orc.SetAttackState(currentAttackState); // Giữ nguyên trạng thái tấn công khi rời khỏi hitbox
-            currentAttackState = ""; // Reset trạng thái tấn công
+            orc.SetAttackState(currentAttackState); 
+            currentAttackState = ""; 
             return;
         }
-        orc.SetMoveState(); // Quay lại di chuyển khi không còn mục tiêu
+        orc.SetMoveState();
     }
 }

@@ -15,18 +15,17 @@ public class OrcAttackState : IState
         this.anim = anim;
         this.orc = orc;
         this.attackCooldown = orc.enemyData.attackCooldown;
-        this.cooldownTimer = 0f;
         this.targetType = targetType;
     }
 
     public void OnEnter()
     {
-        Debug.Log("Orc Attack State Entered:" + attackCooldown);
-        Debug.Log("checkMOve - attack state - ENTER");
         anim.SetBool("isMoving", false);
-        anim.SetTrigger(targetType);
-
-        cooldownTimer = 0f;
+        if (cooldownTimer < 0f)
+        {
+            anim.SetTrigger(targetType);
+            Attack();
+        }
     }
 
     public void OnExit()
@@ -54,8 +53,7 @@ public class OrcAttackState : IState
 
     private void Attack()
     {
-        Debug.Log("Orc is attacking!");
-        orc.DealDamage();
+        orc.DealDamage(orc.target.gameObject);
     }
     #endregion
 }

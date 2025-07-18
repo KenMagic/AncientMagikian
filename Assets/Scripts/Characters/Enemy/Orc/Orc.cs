@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-public class Orc : MonoBehaviour
+public class Orc : MonoBehaviour, IDamagable
 {
     [SerializeField] public EnemySO enemyData;
     [SerializeField] private Animator animator;
@@ -11,13 +11,20 @@ public class Orc : MonoBehaviour
     public Transform target;
     private Coroutine forgetTargetCoroutine;
 
-    public float distanceToTarget = 1.5f;
+    IState attackState;
+    IState moveState;
+    IState hurtState;
 
     void Awake()
     {
         stateMachine = GetComponent<StateMachine>();
         animator = GetComponent<Animator>();
         target = GameObject.FindGameObjectWithTag("Tower")?.transform;
+        float currentHealth = enemyData.health;
+
+        attackState = new OrcAttackState(animator, this, enemyData.attackCooldown, "isAttackTower");
+        moveState = new OrcMoveState(animator, this, target);
+        hurtState = new OrcHurtState(animator, this);
 
     }
 
@@ -25,50 +32,36 @@ public class Orc : MonoBehaviour
     {
         if (target == null || stateMachine == null || animator == null)
         {
-            Debug.LogError("Orc missing essential components");
             return;
         }
 
         towerTarget = GameObject.FindGameObjectWithTag("Tower")?.transform;
         if (towerTarget == null)
         {
-            Debug.LogError("Tower target not found");
             return;
         }
 
-        stateMachine.SetState(new OrcMoveState(animator, this, target));
+        stateMachine.SetState(moveState);
     }
 
     void Update()
     {
-        Debug.DrawRay(transform.position, (target.position - transform.position).normalized * distanceToTarget, Color.red);
         stateMachine.Update();
-    }
-
-
-    public void DealDamage()
-    {
-        Debug.Log("Orc gây sát thương!");
-    }
-
-    public void DamegeTaken()
-    {
-        Debug.Log("Orc nhận sát thương!");
     }
 
     public void SetAttackState(string type)
     {
-        stateMachine.SetState(new OrcAttackState(animator, this, enemyData.attackCooldown, type));
+        stateMachine.SetState(attackState);
     }
 
     public void SetMoveState()
     {
-        stateMachine.SetState(new OrcMoveState(animator, this, target));
+        stateMachine.SetState(moveState);
     }
 
     public void SetHurtState()
     {
-        stateMachine.SetState(new OrcHurtState(animator, this));
+        stateMachine.SetState(hurtState);
     }
 
     public void SetNewTarget(Transform newTarget)
@@ -82,6 +75,12 @@ public class Orc : MonoBehaviour
         target = towerTarget;
         SetMoveState();
     }
+
+    public void DealDamage(GameObject gameObject)
+    {
+        gameObject.GetComponent<IDamagable>()?.TakeDamage(enemyData.attackDamage);
+    }
+    
 
     public void StartForgetTargetCoroutine(float delay)
     {
@@ -97,18 +96,25 @@ public class Orc : MonoBehaviour
         StartCoroutine(HideCoroutine(delay));
     }
 
+    public void TakeDamage(float damage)
+    {
+        enemyData.health -= damage;
+        SetHurtState();
+    }
+
+    #region private methods
     private IEnumerator HideCoroutine(float delay)
     {
         yield return new WaitForSeconds(delay);
-        Destroy(this); // hoặc Destroy(gameObject);
+        Destroy(this); 
     }
 
     private IEnumerator ForgetTargetAfterDelay(float delay)
     {
         yield return new WaitForSeconds(delay);
-        Debug.Log("Orc quay lại Tower vì player biến mất.");
         ResetTargetToTower();
     }
+    #endregion
 }
 
 

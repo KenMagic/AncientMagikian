@@ -13,9 +13,15 @@ public class OrcHurtState : IState
 
     public void OnEnter()
     {
-        anim.SetTrigger("isHurt");
-        TakeDamage();
-
+        if (orc.enemyData.health <= 0)
+        {
+            anim.SetTrigger("isDeath");
+            orc.HideAfterDelay(1f);
+        }
+        else
+        {
+            anim.SetTrigger("isHurt");
+        }
     }
 
     public void OnExit()
@@ -27,15 +33,6 @@ public class OrcHurtState : IState
     }
 
     #region private methods
-    public void TakeDamage()
-    {
-        Debug.Log("Orc is taking damage!");
-        orc.DamegeTaken();
-        if (orc.enemyData.health <= 0)
-        {
-            anim.SetTrigger("Death");
-            orc.HideAfterDelay(0.5f);
-        }
-    }
+
     #endregion
 }

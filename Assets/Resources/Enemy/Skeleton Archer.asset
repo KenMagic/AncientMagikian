@@ -13,8 +13,7 @@ MonoBehaviour:
   m_Name: Skeleton Archer
   m_EditorClassIdentifier: 
   enemyName: Skeleton Archer
-  health: 15
+  health: 150
   speed: 0.75
-  attackDamage: 2
-  attackCooldown: 0.5
-  enemySprite: {fileID: 0}
+  attackDamage: 30
+  attackCooldown: 4

@@ -15,7 +15,8 @@ public class OrcPOV : MonoBehaviour
 
         if (orc == null)
         {
-            Debug.LogError("❌ Không tìm thấy component Orc trong OrcPOV! Check hierarchy.");
+            Debug.LogError("OrcPOV: No Orc component found in parent.");
+            return;
         }
     }
 
@@ -23,13 +24,17 @@ public class OrcPOV : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            Debug.Log("Player vào vùng phát hiện (POV)");
             orc.SetNewTarget(collision.transform);
         }
+    }
 
-        if (collision.CompareTag("Tower"))
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
         {
-            Debug.Log("Vào vùng Tower (POV)");
+            if (forgetTargetCoroutine != null)
+                StopCoroutine(forgetTargetCoroutine);
+            orc.SetNewTarget(collision.transform);
         }
     }
 
@@ -37,18 +42,10 @@ public class OrcPOV : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            Debug.Log("Player rời khỏi vùng (POV)");
-
             if (forgetTargetCoroutine != null)
                 StopCoroutine(forgetTargetCoroutine);
 
             orc.StartForgetTargetCoroutine(delayToForgetTarget);
-        }
-
-        if (collision.CompareTag("Tower"))
-        {
-            Debug.Log("Rời vùng Tower (POV)");
-            orc.SetMoveState(); // Quay lại di chuyển
         }
     }
 
