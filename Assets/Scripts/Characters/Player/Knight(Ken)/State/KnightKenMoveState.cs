@@ -3,7 +3,7 @@ public class KnightKenMoveState : IState
 {
     private Animator animator;
 
-    private float moveSpeed = 5f; // Speed of movement
+    private float moveSpeed;
 
     public KnightKenMoveState(Animator animator)
     {
@@ -12,18 +12,22 @@ public class KnightKenMoveState : IState
 
     public void OnEnter()
     {
-        Debug.Log("KnightKenMoveState: OnEnter");
+        moveSpeed = animator.GetComponent<KnightKen>().GetMoveSpeed();
         animator.SetBool("isMoving", true);
     }
 
     public void OnExit()
     {
-        Debug.Log("KnightKenMoveState: OnExit");
         animator.SetBool("isMoving", false);
     }
 
     public void OnUpdate()
     {
+        if (animator.GetComponent<KnightKen>().IsStunned)
+        {
+            animator.SetBool("isMoving", false);
+            return; // Do not process movement if stunned
+        }
         if (Input.GetKey(KeyCode.W))
         {
             Move(Vector3.up, moveSpeed);

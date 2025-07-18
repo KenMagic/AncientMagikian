@@ -9,6 +9,7 @@ TagManager:
   - POV
   - Hitbox
   - PlayerAttack
+  - Enemy
   layers:
   - Default
   - TransparentFX

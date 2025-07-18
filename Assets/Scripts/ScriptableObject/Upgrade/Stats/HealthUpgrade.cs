@@ -6,18 +6,16 @@ public class HealthUpgrade : UpgradeSO
 {
     [SerializeField] private float healthBoost = 20f;
 
-    public override void ApplyUpgrade(GameObject target)
+    public override void Apply(GameObject target)
     {
-        if (target.TryGetComponent<IDamagable>(out IDamagable damagable))
+        if (target.TryGetComponent<IPlayerUpgrade>(out var player))
         {
-            // Assuming the IDamagable interface has a method to increase health
-            // This is a placeholder; the actual implementation may vary
-            damagable.TakeDamage(-healthBoost);
-            Debug.Log($"Applied health upgrade: {healthBoost} to {target.name}");
+            player.AddStatUpgrade(StatType.Health, healthBoost);
+            Debug.Log($"Applied {UpgradeName} to {target.name}, boosting health by {healthBoost}");
         }
         else
         {
-            Debug.LogWarning($"Target {target.name} does not implement IDamagable interface.");
+            Debug.LogWarning($"Target {target.name} does not have a IPlayerUpgrade component.");
         }
     }
 }

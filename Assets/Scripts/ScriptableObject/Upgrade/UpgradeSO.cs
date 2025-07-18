@@ -1,10 +1,14 @@
 using UnityEngine;
 
 
-public abstract class UpgradeSO : ScriptableObject
+public abstract class UpgradeSO : ScriptableObject, IUpgradable
 {
-    public string upgradeName;
-    public string description;
+    [SerializeField] private string upgradeName;
+    [TextArea]
+    [SerializeField] private string description;
+
+    public string UpgradeName => upgradeName;
+    public string Description => description;
     public Sprite icon;
     public UpgradeType upgradeType;
 
@@ -13,5 +17,6 @@ public abstract class UpgradeSO : ScriptableObject
         Common, Rare, Epic, Legendary
     }
 
-    public abstract void ApplyUpgrade(GameObject target);
+    public abstract void Apply(GameObject target);
+
 }

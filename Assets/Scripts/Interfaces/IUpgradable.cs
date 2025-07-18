@@ -1,4 +1,7 @@
+using UnityEngine;
 public interface IUpgradable
 {
-    void Upgrade();
+    string UpgradeName { get; }
+    string Description { get; }
+    void Apply(GameObject target);
 }
