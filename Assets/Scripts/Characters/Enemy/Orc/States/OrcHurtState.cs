@@ -13,7 +13,15 @@ public class OrcHurtState : IState
 
     public void OnEnter()
     {
-        anim.SetTrigger("isHurt");
+        if (orc.enemyData.health <= 0)
+        {
+            anim.SetTrigger("isDeath");
+            orc.HideAfterDelay(1f);
+        }
+        else
+        {
+            anim.SetTrigger("isHurt");
+        }
     }
 
     public void OnExit()

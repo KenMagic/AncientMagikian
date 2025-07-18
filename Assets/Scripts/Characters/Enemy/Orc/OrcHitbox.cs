@@ -12,6 +12,7 @@ public class OrcHitbox : MonoBehaviour
 
         if (orc == null)
         {
+            return;
         }
     }
 

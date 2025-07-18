@@ -49,12 +49,6 @@ public class Orc : MonoBehaviour, IDamagable
         stateMachine.Update();
     }
 
-
-    public void DealDamage(GameObject gameObject)
-    {
-        gameObject.GetComponent<IDamagable>()?.TakeDamage(enemyData.attackDamage);
-    }
-
     public void SetAttackState(string type)
     {
         stateMachine.SetState(attackState);
@@ -82,6 +76,12 @@ public class Orc : MonoBehaviour, IDamagable
         SetMoveState();
     }
 
+    public void DealDamage(GameObject gameObject)
+    {
+        gameObject.GetComponent<IDamagable>()?.TakeDamage(enemyData.attackDamage);
+    }
+    
+
     public void StartForgetTargetCoroutine(float delay)
     {
         if (!gameObject.activeInHierarchy) return;
@@ -96,10 +96,17 @@ public class Orc : MonoBehaviour, IDamagable
         StartCoroutine(HideCoroutine(delay));
     }
 
+    public void TakeDamage(float damage)
+    {
+        enemyData.health -= damage;
+        SetHurtState();
+    }
+
+    #region private methods
     private IEnumerator HideCoroutine(float delay)
     {
         yield return new WaitForSeconds(delay);
-        Destroy(this); // hoặc Destroy(gameObject);
+        Destroy(this); 
     }
 
     private IEnumerator ForgetTargetAfterDelay(float delay)
@@ -107,20 +114,7 @@ public class Orc : MonoBehaviour, IDamagable
         yield return new WaitForSeconds(delay);
         ResetTargetToTower();
     }
-
-    public void TakeDamage(float damage)
-    {
-        enemyData.health -= damage;
-        if (enemyData.health <= 0)
-        {
-            animator.SetTrigger("isDeath");
-            HideAfterDelay(1f);
-        }
-        else
-        {
-            SetHurtState();
-        }
-    }
+    #endregion
 }
 
 

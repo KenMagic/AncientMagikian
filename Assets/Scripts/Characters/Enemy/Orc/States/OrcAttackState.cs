@@ -15,7 +15,6 @@ public class OrcAttackState : IState
         this.anim = anim;
         this.orc = orc;
         this.attackCooldown = orc.enemyData.attackCooldown;
-        this.cooldownTimer = 0f;
         this.targetType = targetType;
     }
 
@@ -25,6 +24,7 @@ public class OrcAttackState : IState
         if (cooldownTimer < 0f)
         {
             anim.SetTrigger(targetType);
+            Attack();
         }
     }
 

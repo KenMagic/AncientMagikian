@@ -5,7 +5,6 @@ public class OrcMoveState : IState
     private Animator anim;
     private Orc orc;
     private Transform target;
-    private Transform currentTarget;
 
     public OrcMoveState(Animator anim, Orc orc, Transform target)
     {
@@ -18,7 +17,6 @@ public class OrcMoveState : IState
     {
         anim.SetBool("isMoving", true);
         SetTarget();
-        currentTarget = target;
     }
 
     public void OnExit()

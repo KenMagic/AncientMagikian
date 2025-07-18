@@ -15,6 +15,8 @@ public class OrcPOV : MonoBehaviour
 
         if (orc == null)
         {
+            Debug.LogError("OrcPOV: No Orc component found in parent.");
+            return;
         }
     }
 
@@ -33,7 +35,6 @@ public class OrcPOV : MonoBehaviour
             if (forgetTargetCoroutine != null)
                 StopCoroutine(forgetTargetCoroutine);
             orc.SetNewTarget(collision.transform);
-            orc.StartForgetTargetCoroutine(delayToForgetTarget);
         }
     }
 

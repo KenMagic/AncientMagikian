@@ -21,6 +21,5 @@ public class EnemySpawner : MonoBehaviour
 	void SpawnSkeletonArcher()
 	{
 		GameObject skeletonArcher = Instantiate(skeletonArcherPrefab, transform.position, Quaternion.identity);
-		skeletonArcher.GetComponent<SkeletonArcher>().target = castle;
 	}
 }
