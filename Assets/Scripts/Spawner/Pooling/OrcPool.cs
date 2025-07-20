@@ -66,6 +66,8 @@ public class OrcPool : MonoBehaviour, IPool<GameObject>
         obj.GetComponent<Orc>().ResetStatus(); // Reset state
         obj.SetActive(false);
         asteroidPool.Enqueue(obj);
+        WaveManager.Instance.OnEnemyDied(obj.GetComponent<Orc>().enemyData.exp);
+
     }
 
     // Clear the pool (if needed)

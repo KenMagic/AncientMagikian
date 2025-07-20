@@ -8,5 +8,5 @@ public class EnemySO : ScriptableObject
     public float speed;
     public float attackDamage;
     public float attackCooldown;
-    public float exp;
+    public int exp;
 }

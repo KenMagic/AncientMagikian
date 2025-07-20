@@ -11,11 +11,13 @@ public class Orc : MonoBehaviour, IDamagable
     public Transform target;
     private Coroutine forgetTargetCoroutine;
     public HealthBar healthBar;
-    private float currentHealth;
+    public float currentHealth;
 
     IState attackState;
     IState moveState;
     IState hurtState;
+
+    public bool isDeath = false;
 
     void Awake()
     {
@@ -49,6 +51,7 @@ public class Orc : MonoBehaviour, IDamagable
 
     void Update()
     {
+        if (isDeath) return;
         stateMachine.Update();
     }
 
@@ -80,6 +83,7 @@ public class Orc : MonoBehaviour, IDamagable
     }
     public void ResetStatus()
     {
+        isDeath = false;
         currentHealth = enemyData.health;
     }
     public void DealDamage(GameObject gameObject)
@@ -113,7 +117,6 @@ public class Orc : MonoBehaviour, IDamagable
     private IEnumerator HideCoroutine(float delay)
     {
         yield return new WaitForSeconds(delay);
-        Destroy(this); 
     }
 
     private IEnumerator ForgetTargetAfterDelay(float delay)

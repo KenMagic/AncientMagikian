@@ -13,11 +13,13 @@ public class SkeletonArcher : MonoBehaviour, IDamagable
     public Transform arrowShoter;
     private Coroutine forgetTargetCoroutine;
     public HealthBar healthBar;
-    private float currentHealth;
+    public float currentHealth;
 
     IState attackState;
     IState moveState;
     IState hurtState;
+
+    public bool isDeath = false;
 
     private void Awake()
     {
@@ -49,6 +51,7 @@ public class SkeletonArcher : MonoBehaviour, IDamagable
 
     void Update()
     {
+        if (isDeath) return;
         stateMachine.Update();
     }
     public void SetAttackState()
@@ -77,6 +80,7 @@ public class SkeletonArcher : MonoBehaviour, IDamagable
     }
     public void ResetStatus()
     {
+        isDeath = false;
         currentHealth = enemyData.health;
     }
     public void StartForgetTargetCoroutine(float delay)
@@ -121,7 +125,6 @@ public class SkeletonArcher : MonoBehaviour, IDamagable
     private IEnumerator HideCoroutine(float delay)
     {
         yield return new WaitForSeconds(delay);
-        Destroy(gameObject);
     }
 
     private IEnumerator ForgetTargetAfterDelay(float delay)

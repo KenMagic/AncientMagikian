@@ -66,6 +66,8 @@ public class SkeletonArcherPool : MonoBehaviour, IPool<GameObject>
         obj.GetComponent<SkeletonArcher>().ResetStatus();
         obj.SetActive(false);
         skeletonArcherPool.Enqueue(obj);
+        WaveManager.Instance.OnEnemyDied(obj.GetComponent<SkeletonArcher>().enemyData.exp);
+
     }
 
     // Clear the pool (if needed)

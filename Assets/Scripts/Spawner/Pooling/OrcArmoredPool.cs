@@ -66,6 +66,8 @@ public class OrcArmoredPool : MonoBehaviour, IPool<GameObject>
         obj.GetComponent<OrcArmored>().ResetStatus(); // Reset state
         obj.SetActive(false);
         asteroidPool.Enqueue(obj);
+        WaveManager.Instance.OnEnemyDied(obj.GetComponent<OrcArmored>().enemyData.exp);
+
     }
 
     // Clear the pool (if needed)

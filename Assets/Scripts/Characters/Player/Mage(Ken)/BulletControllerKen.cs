@@ -46,7 +46,7 @@ public class BulletControllerKen : MonoBehaviour
     {
         if (collision.CompareTag("Hitbox"))
         {
-            var target = collision.GetComponent<IDamagable>();
+            var target = collision.GetComponentInParent<IDamagable>();
             if (target != null)
             {
                 target.TakeDamage(damage);

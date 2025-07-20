@@ -13,8 +13,9 @@ public class OrcHurtState : IState
 
     public void OnEnter()
     {
-        if (orc.enemyData.health <= 0)
+        if (orc.currentHealth <= 0)
         {
+            orc.isDeath = true;
             anim.SetTrigger("isDeath");
             orc.HideAfterDelay(1f);
             OrcPool.Instance.ReturnObject(orc.gameObject);

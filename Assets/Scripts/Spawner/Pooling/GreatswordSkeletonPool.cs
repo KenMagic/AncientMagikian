@@ -66,6 +66,7 @@ public class GreatswordSkeletonPool : MonoBehaviour, IPool<GameObject>
         obj.GetComponent<GreatswordSkeleton>().ResetStatus(); // Reset state
         obj.SetActive(false);
         asteroidPool.Enqueue(obj);
+        WaveManager.Instance.OnEnemyDied(obj.GetComponent<GreatswordSkeleton>().enemyData.exp);
     }
 
     // Clear the pool (if needed)

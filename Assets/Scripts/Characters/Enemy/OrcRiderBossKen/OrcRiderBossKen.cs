@@ -183,6 +183,8 @@ public class OrcRiderBossKen : MonoBehaviour, IDamagable, IStunable, IBuffable
         {
             currentHealth = 0; // Ensure health doesn't go below zero
             isDead = true; // Set dead flag
+            WaveManager.Instance.OnEnemyDied(enemyData.exp);
+
         }
         // Update health bar
         healthBar.UpdateHealthBar(currentHealth, enemyData.health);

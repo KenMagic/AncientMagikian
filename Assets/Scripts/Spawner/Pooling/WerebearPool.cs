@@ -66,6 +66,8 @@ public class WerebearPool : MonoBehaviour, IPool<GameObject>
         obj.GetComponent<Werebear>().ResetStatus(); // Reset state
         obj.SetActive(false);
         asteroidPool.Enqueue(obj);
+        WaveManager.Instance.OnEnemyDied(obj.GetComponent<Werebear>().enemyData.exp);
+
     }
 
     // Clear the pool (if needed)

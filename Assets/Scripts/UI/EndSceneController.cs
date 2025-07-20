@@ -1,6 +1,7 @@
 using TMPro; 
 using UnityEngine.SceneManagement;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EndSceneController : MonoBehaviour
 {
@@ -10,18 +11,18 @@ public class EndSceneController : MonoBehaviour
 
     void Start()
     {
-        resultText.text = "YOU WIN!";
-        timeText.text = "Time Lived: 1221s";
-        waveText.text = "Highest Wave: 2";
+        resultText.text = GameController.Instance.GameWin ? "You Win" : "You Lose";
+        timeText.text = "Highest level: " + GameController.Instance.HighestLevel;
+        waveText.text = "Highest Wave: " + GameController.Instance.HighestWave;
     }
 
     public void OnTryAgainClick()
     {
-        SceneManager.LoadScene("MapScenceOld");
+        GameController.Instance.Restart();
     }
 
     public void OnMainMenuClick()
     {
-        SceneManager.LoadScene("StartScene");
+        GameController.Instance.ChangeToMainMenu();
     }
 }

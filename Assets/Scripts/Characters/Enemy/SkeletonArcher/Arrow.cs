@@ -3,7 +3,7 @@
 public class Arrow : MonoBehaviour
 {
     public float speed = 1f;
-    public float maxDistance = 6f;
+    public float maxDistance = 30f;
     [SerializeField] public EnemySO enemyData;
 
     public Vector3 startPosition;

@@ -116,7 +116,6 @@ public class GreatswordSkeleton : MonoBehaviour, IDamagable
     private IEnumerator HideCoroutine(float delay)
     {
         yield return new WaitForSeconds(delay);
-        Destroy(this);
     }
 
     private IEnumerator ForgetTargetAfterDelay(float delay)

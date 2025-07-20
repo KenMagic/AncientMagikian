@@ -12,8 +12,9 @@ public class SlimeHurtState : IState
     public void OnEnter()
     {
 
-        if (slime.enemyData.health <= 0)
+        if (slime.currentHealth <= 0)
         {
+            slime.isDeath = true;
             anim.SetTrigger("isDeath");
             slime.HideAfterDelay(1f);
             SlimePool.Instance.ReturnObject(slime.gameObject);

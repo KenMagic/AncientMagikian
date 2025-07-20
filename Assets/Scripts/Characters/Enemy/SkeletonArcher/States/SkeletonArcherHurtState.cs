@@ -14,8 +14,9 @@ public class SkeletonArcherHurtState : IState
     public void OnEnter()
     {
 
-        if (skeletonArcher.enemyData.health <= 0)
+        if (skeletonArcher.currentHealth <= 0)
         {
+            skeletonArcher.isDeath = true;
             anim.SetTrigger("isDeath");
             skeletonArcher.HideAfterDelay(1f);
             SkeletonArcherPool.Instance.ReturnObject(skeletonArcher.gameObject);

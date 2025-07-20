@@ -95,5 +95,6 @@ public class UpgradeUIManager : MonoBehaviour
     {
         gameObject.SetActive(false);
         GameController.Instance.ResumeGame();
+        GameSceneControl.Instance.CheckExp();
     }
 }

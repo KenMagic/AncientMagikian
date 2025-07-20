@@ -11,12 +11,14 @@ public class Werebear : MonoBehaviour, IDamagable
     public Transform towerTarget;
     public Transform target;
     private Coroutine forgetTargetCoroutine;
-    private float currentHealth;
+    public float currentHealth;
     public HealthBar healthBar;
 
     IState attackState;
     IState moveState;
     IState hurtState;
+
+    public bool isDeath = false;
     void Awake()
     {
         stateMachine = GetComponent<StateMachine>();
@@ -48,6 +50,7 @@ public class Werebear : MonoBehaviour, IDamagable
     // Update is called once per frame
     void Update()
     {
+        if (isDeath) return;
         stateMachine.Update();
     }
 
@@ -103,6 +106,7 @@ public class Werebear : MonoBehaviour, IDamagable
 
     public void ResetStatus()
     {
+        isDeath = false;
         currentHealth = enemyData.health;
     }
 
@@ -117,7 +121,6 @@ public class Werebear : MonoBehaviour, IDamagable
     private IEnumerator HideCoroutine(float delay)
     {
         yield return new WaitForSeconds(delay);
-        Destroy(this);
     }
 
     private IEnumerator ForgetTargetAfterDelay(float delay)

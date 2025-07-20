@@ -1,4 +1,5 @@
 
+using System;
 using System.Collections;
 using System.ComponentModel;
 using TMPro;
@@ -63,6 +64,7 @@ public class MageKen : MonoBehaviour, IDamagable, IBlockable, IPlayerUpgrade, IB
     public float abilityCooldown = 0f;
     public float ultimateCooldown = 0f;
     public float specCooldown = 0f;
+    public float attackCooldown = 0f;
     private int blockCount = 0;
 
 
@@ -120,16 +122,18 @@ public class MageKen : MonoBehaviour, IDamagable, IBlockable, IPlayerUpgrade, IB
         ultimateCooldown -= Time.deltaTime;
         abilityCooldown -= Time.deltaTime;
         specCooldown -= Time.deltaTime;
+        attackCooldown -= Time.deltaTime;
         if (!isAttacking)
         {
 
-            if (Input.GetMouseButtonDown(0)) // Example for attack input
+            if (Input.GetMouseButtonDown(0) && attackCooldown <=0) // Example for attack input
             {
                 isAttacking = true;
+                attackCooldown = 1f;
                 ShootNormal();
                 stateMachine.SetState(attackState);
             }
-            if ( Input.GetMouseButtonDown(1)  && IsNoCoolDown || Input.GetMouseButtonDown(1)  && specCooldown <= 0) // Example for attack input
+            if (Input.GetMouseButtonDown(1) && IsNoCoolDown || Input.GetMouseButtonDown(1) && specCooldown <= 0) // Example for attack input
             {
                 specCooldown = spec.Cooldown;
                 isAttacking = true;
@@ -141,7 +145,7 @@ public class MageKen : MonoBehaviour, IDamagable, IBlockable, IPlayerUpgrade, IB
                 ultimateCooldown = ultimateSkill.Cooldown;
                 stateMachine.SetState(ultimateState);
             }
-            else if ( Input.GetKeyDown(KeyCode.E) && IsNoCoolDown || Input.GetKeyDown(KeyCode.E) && abilityCooldown <= 0) // Example for ultimate input
+            else if (Input.GetKeyDown(KeyCode.E) && IsNoCoolDown || Input.GetKeyDown(KeyCode.E) && abilityCooldown <= 0) // Example for ultimate input
             {
                 abilitySkill.Activate(this.gameObject, null);
                 stateMachine.SetState(abilityState);
@@ -168,6 +172,7 @@ public class MageKen : MonoBehaviour, IDamagable, IBlockable, IPlayerUpgrade, IB
             {
                 characterStats.CurrentHealth = 0; // Ensure health doesn't go below zero
                 isDead = true;
+                StartCoroutine(EndGame(1f));
             }
             else
             {
@@ -184,7 +189,7 @@ public class MageKen : MonoBehaviour, IDamagable, IBlockable, IPlayerUpgrade, IB
             MageKenShield shield = GetComponentInChildren<MageKenShield>();
             shield.BreakShield();
             blockCount--;
-            if (blockCount == 0)
+            if (blockCount <= 0)
             {
                 isBlocking = false;
                 shield.RemoveShield();
@@ -193,6 +198,13 @@ public class MageKen : MonoBehaviour, IDamagable, IBlockable, IPlayerUpgrade, IB
         }
 
     }
+
+    private IEnumerator EndGame(float v)
+    {
+        yield return new WaitForSeconds(v);
+        GameController.Instance.GameOver();
+    }
+
     private IEnumerator HurtRoutine()
     {
         isHurt = true;
@@ -277,9 +289,11 @@ public class MageKen : MonoBehaviour, IDamagable, IBlockable, IPlayerUpgrade, IB
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         mousePos.z = 0f;
 
-        Vector2 direction = (mousePos - this.transform.position).normalized;
+        Vector2 direction = (mousePos - transform.position).normalized;
 
-        GameObject bullet = Instantiate(bulletPrefab, this.transform.position, Quaternion.identity);
+        GameObject bullet = FireBallPool.Instance.GetObject();
+        bullet.transform.position = transform.position;
+        bullet.transform.rotation = Quaternion.identity;
 
         BulletControllerKen bulletController = bullet.GetComponent<BulletControllerKen>();
         if (bulletController != null)

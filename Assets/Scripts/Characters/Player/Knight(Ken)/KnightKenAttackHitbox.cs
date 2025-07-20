@@ -12,9 +12,9 @@ public class KnightKenAttackHitbox : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Enemy"))
+        if (other.CompareTag("Hitbox"))
         {
-            IDamagable damagable = other.GetComponent<IDamagable>();
+            IDamagable damagable = other.GetComponentInParent<IDamagable>();
             if (damagable != null && !hitTargets.Contains(damagable))
             {
                 hitTargets.Add(damagable);
@@ -23,9 +23,9 @@ public class KnightKenAttackHitbox : MonoBehaviour
     }
     private void OnTriggerStay2D(Collider2D other)
     {
-        if (other.CompareTag("Enemy"))
+        if (other.CompareTag("Hitbox"))
         {
-            IDamagable damagable = other.GetComponent<IDamagable>();
+            IDamagable damagable = other.GetComponentInParent<IDamagable>();
             if (damagable != null && !hitTargets.Contains(damagable))
             {
                 hitTargets.Add(damagable);

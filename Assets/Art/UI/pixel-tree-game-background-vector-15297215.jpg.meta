@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      pixel-tree-game-background-vector-15297215_0: 4123362666308086401
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

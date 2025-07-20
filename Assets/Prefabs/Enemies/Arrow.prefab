@@ -176,6 +176,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
-  maxDistance: 6
+  maxDistance: 30
   enemyData: {fileID: 11400000, guid: 18a0d59e7396fc44397b1dc03a8e2891, type: 2}
   startPosition: {x: 0, y: 0, z: 0}

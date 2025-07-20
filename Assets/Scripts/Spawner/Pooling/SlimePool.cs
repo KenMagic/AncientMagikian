@@ -66,6 +66,8 @@ public class SlimePool : MonoBehaviour, IPool<GameObject>
         obj.GetComponent<Slime>().ResetStatus();
         obj.SetActive(false);
         skeletonArcherPool.Enqueue(obj);
+        WaveManager.Instance.OnEnemyDied(obj.GetComponent<Slime>().enemyData.exp);
+
     }
 
     // Clear the pool (if needed)

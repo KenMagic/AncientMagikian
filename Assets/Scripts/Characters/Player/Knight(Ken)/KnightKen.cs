@@ -34,7 +34,8 @@ public class KnightKen : MonoBehaviour, IDamagable, IBlockable, IPlayerUpgrade, 
         set { isBlocking = value; }
     } // Implementing IBlockable interface
 
-    public BuffManager BuffManager {
+    public BuffManager BuffManager
+    {
         get { return buffManager; }
         set { buffManager = value; }
     }
@@ -155,7 +156,8 @@ public class KnightKen : MonoBehaviour, IDamagable, IBlockable, IPlayerUpgrade, 
             if (characterStats.CurrentHealth <= 0 || characterStats.CurrentHealth - damage <= 0)
             {
                 characterStats.CurrentHealth = 0; // Ensure health doesn't go below zero
-                isDead = true;           
+                isDead = true;
+                StartCoroutine(EndGame(1f));
             }
             else
             {
@@ -245,7 +247,12 @@ public class KnightKen : MonoBehaviour, IDamagable, IBlockable, IPlayerUpgrade, 
         buffManager.ApplyBuff(buff);
     }
     public void RemoveBuff(IBuff buff)
-    {       
+    {
+    }
+    private IEnumerator EndGame(float v)
+    {
+        yield return new WaitForSeconds(v);
+        GameController.Instance.GameOver();
     }
 }
 

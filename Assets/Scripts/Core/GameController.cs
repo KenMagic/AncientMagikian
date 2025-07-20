@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
@@ -18,6 +19,11 @@ public class GameController : MonoBehaviour
     public GameState CurrentState => currentState;
 
     private int coin;
+
+    public bool GameWin { get; set; } = false;
+
+    public int HighestWave { get; set; } = 0;
+    public int HighestLevel { get; set; } = 0;
 
     private void Awake()
     {
@@ -43,40 +49,61 @@ public class GameController : MonoBehaviour
 
     public void ChangeToMainMenu()
     {
+        ResetStatus(false);
+        SceneManager.LoadScene("StartScene");
         ChangeState(GameState.MainMenu);
-        Time.timeScale = 1f; 
+        Time.timeScale = 1f;
     }
 
     public void StartGame()
     {
+        SceneManager.LoadScene("GameScene");
         ChangeState(GameState.Playing);
     }
 
     public void PauseGame()
-    {   
+    {
         ChangeState(GameState.Paused);
-        Time.timeScale = 0f; 
+        Time.timeScale = 0f;
     }
 
     public void ResumeGame()
     {
         if (currentState == GameState.Paused)
             ChangeState(GameState.Playing);
-            Time.timeScale = 1f; 
+        Time.timeScale = 1f;
     }
 
     public void GameOver()
     {
+        SceneManager.LoadScene("EndScene");
         ChangeState(GameState.GameOver);
-        Time.timeScale = 0f; 
+        Time.timeScale = 0f;
+    }
+    public void Restart()
+    {
+        SceneManager.LoadScene("GameScene");
+        ChangeState(GameState.Playing);
+        ResetStatus(true);
+        Time.timeScale = 1f;
     }
 
     private void ChangeState(GameState newState)
     {
         if (newState == currentState) return;
-
         currentState = newState;
         Debug.Log("Changed state to: " + currentState);
+    }
+
+    private void ResetStatus(bool isRestart)
+    {
+        if (!isRestart)
+        {
+            CurrentPlayer = null;
+        }
+        GameWin = false;
+        HighestWave = 0;
+        HighestLevel = 0;
     }
 
     // ========================

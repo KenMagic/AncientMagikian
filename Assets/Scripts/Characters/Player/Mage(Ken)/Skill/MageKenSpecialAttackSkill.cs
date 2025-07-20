@@ -32,8 +32,9 @@ public class MageKenSpecialAttackSkill : ISkill
             float rad = angle * Mathf.Deg2Rad;
             Vector2 direction = new Vector2(Mathf.Cos(rad), Mathf.Sin(rad));
             Vector3 spawnPos = firePoint.position + (Vector3)(direction * spawnOffset);
-
-            GameObject bullet = GameObject.Instantiate(mageKen.bulletPrefab, spawnPos, Quaternion.Euler(0f, 0f, angle));
+            GameObject bullet = FireBallPool.Instance.GetObject();
+            bullet.transform.position = spawnPos;
+            bullet.transform.rotation = Quaternion.Euler(0f, 0f, angle);
             BulletControllerKen bulletController = bullet.GetComponent<BulletControllerKen>();
             if (bulletController != null)
             {

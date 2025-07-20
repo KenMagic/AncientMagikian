@@ -13,8 +13,9 @@ public class WerebearHurtState : IState
 
     public void OnEnter()
     {
-        if (werebear.enemyData.health <= 0)
+        if (werebear.currentHealth <= 0)
         {
+            werebear.isDeath = true;
             animator.SetTrigger("isDeath");
             werebear.HideAfterDelay(1f);
             WerebearPool.Instance.ReturnObject(werebear.gameObject); 

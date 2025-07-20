@@ -29,5 +29,6 @@ public class CharacterSelectManager : MonoBehaviour
     {
         Debug.Log("Player selected: " + stats.characterName);
         GameController.Instance.CurrentPlayer = stats;
+        GameController.Instance.StartGame();
     }
 }

@@ -32,8 +32,10 @@ public class AnimationEventKnightKen : MonoBehaviour
 
         foreach (var col in colliders)
         {
-            if (col.CompareTag("Enemy") && col.TryGetComponent<IDamagable>(out var damagable))
+            if (col.CompareTag("Hitbox")) 
             {
+                var damagable = col.GetComponentInParent<IDamagable>();
+
                 damagable.TakeDamage(knightKen.GetAttackDamage());
             }
         }
@@ -45,8 +47,9 @@ public class AnimationEventKnightKen : MonoBehaviour
 
         foreach (var col in colliders)
         {
-            if (col.CompareTag("Enemy") && col.TryGetComponent<IDamagable>(out var damagable))
+            if (col.CompareTag("Hitbox"))
             {
+                var damagable = col.GetComponentInParent<IDamagable>();
                 damagable.TakeDamage(knightKen.abilitySkill.abilityDamage);
             }
         }
@@ -61,11 +64,10 @@ public void UseUltimate()
 
         foreach (var col in colliders)
         {
-            if (col.CompareTag("Enemy") && col.TryGetComponent<Rigidbody2D>(out var rb))
+            if (col.CompareTag("Hitbox"))
             {
-                Vector2 dir = (col.transform.position - transform.position).normalized;
                 float duration = knightKen.ultimateSkill.StunDuration;
-                col.TryGetComponent<IDamagable>(out var damagable);
+                var damagable = col.GetComponentInParent<IDamagable>();
                 if (damagable != null)
                 {
                     damagable.TakeDamage(knightKen.ultimateSkill.ultimateDamage);

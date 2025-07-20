@@ -9,7 +9,7 @@ public class MageKenShield : MonoBehaviour
     }
     public void RemoveShield()
     {
-        Destroy(this);
+        Destroy(gameObject);
     }
 
     // break shield
