@@ -17,6 +17,12 @@ MonoBehaviour:
   - poolName: OrcPool
     amountToSpawn: 10
     spawnInterval: 2
+    startDelay: 0
   - poolName: OrcArmoredPool
     amountToSpawn: 10
     spawnInterval: 3
+    startDelay: 0
+  - poolName: OrcArmoredPool
+    amountToSpawn: 10
+    spawnInterval: 3
+    startDelay: 0
