@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: Legend
   m_EditorClassIdentifier: 
   upgradeName: L
-  description: L
-  icon: {fileID: 0}
+  description: Legend Test
+  icon: {fileID: -1607457003713848634, guid: 25d9f81f660f87843a8c39dc6852d2ba, type: 3}
   upgradeType: 3
+  statToUpgrade: 0
+  value: 0.1

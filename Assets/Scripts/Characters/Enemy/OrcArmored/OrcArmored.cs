@@ -14,7 +14,7 @@ public class OrcArmored : MonoBehaviour
     IState attackState;
     IState moveState;
     IState hurtState;
-
+    
     void Awake()
     {
         stateMachine = GetComponent<StateMachine>();

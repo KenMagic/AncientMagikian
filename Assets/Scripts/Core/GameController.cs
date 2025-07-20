@@ -4,7 +4,7 @@ public class GameController : MonoBehaviour
 {
     public static GameController Instance { get; private set; }
 
-    public PlayerStatsSO currentPlayer { get; set; }
+    public PlayerStatsSO CurrentPlayer;
 
     public enum GameState
     {
@@ -44,6 +44,7 @@ public class GameController : MonoBehaviour
     public void ChangeToMainMenu()
     {
         ChangeState(GameState.MainMenu);
+        Time.timeScale = 1f; 
     }
 
     public void StartGame()
@@ -52,19 +53,22 @@ public class GameController : MonoBehaviour
     }
 
     public void PauseGame()
-    {
+    {   
         ChangeState(GameState.Paused);
+        Time.timeScale = 0f; 
     }
 
     public void ResumeGame()
     {
         if (currentState == GameState.Paused)
             ChangeState(GameState.Playing);
+            Time.timeScale = 1f; 
     }
 
     public void GameOver()
     {
         ChangeState(GameState.GameOver);
+        Time.timeScale = 0f; 
     }
 
     private void ChangeState(GameState newState)

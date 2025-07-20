@@ -28,6 +28,6 @@ public class CharacterSelectManager : MonoBehaviour
     void OnCharacterChosen(PlayerStatsSO stats)
     {
         Debug.Log("Player selected: " + stats.characterName);
-        GameController.Instance.currentPlayer = stats;
+        GameController.Instance.CurrentPlayer = stats;
     }
 }
