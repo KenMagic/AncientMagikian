@@ -10,6 +10,8 @@ public class OrcArmored : MonoBehaviour
     public Transform towerTarget;
     public Transform target;
     private Coroutine forgetTargetCoroutine;
+    private float currentHealth;
+    private HealthBar healthBar;
 
     IState attackState;
     IState moveState;
@@ -20,7 +22,9 @@ public class OrcArmored : MonoBehaviour
         stateMachine = GetComponent<StateMachine>();
         animator = GetComponent<Animator>();
         target = GameObject.FindGameObjectWithTag("Tower")?.transform;
-        float currentHealth = enemyData.health;
+        healthBar = GetComponentInChildren<HealthBar>();
+        currentHealth = enemyData.health;
+
         attackState = new OrcArmoredAttackState(this, animator, enemyData.attackCooldown);
         moveState = new OrcArmoredMoveState(animator, this, target);
         hurtState = new OrcArmoredHurtState(animator, this);
@@ -106,9 +110,15 @@ public class OrcArmored : MonoBehaviour
         }
         else
         {
-            enemyData.health -= damage;
+            currentHealth -= damage;
             SetHurtState();
+            healthBar.UpdateHealthBar(currentHealth, enemyData.health);
         }
+    }
+
+    public void ResetStatus()
+    {
+        currentHealth = enemyData.health;
     }
 
     #region private methods

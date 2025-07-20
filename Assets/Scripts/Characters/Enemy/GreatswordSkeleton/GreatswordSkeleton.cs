@@ -10,6 +10,8 @@ public class GreatswordSkeleton : MonoBehaviour, IDamagable
     public Transform towerTarget;
     public Transform target;
     private Coroutine forgetTargetCoroutine;
+    private float currentHealth;
+    private HealthBar healthBar;
 
     IState attackState;
     IState moveState;
@@ -20,7 +22,9 @@ public class GreatswordSkeleton : MonoBehaviour, IDamagable
         stateMachine = GetComponent<StateMachine>();
         animator = GetComponent<Animator>();
         target = GameObject.FindGameObjectWithTag("Tower")?.transform;
-        float currentHealth = enemyData.health;
+        healthBar = GetComponentInChildren<HealthBar>();
+
+        currentHealth = enemyData.health;
         attackState = new GreatswordSkeletonAttackState(this, animator, enemyData.attackCooldown);
         moveState = new GreatswordSkeletonMoveState(animator, this, target);
         hurtState = new GreatswordSkeletonHurtState(animator, this);
@@ -73,6 +77,10 @@ public class GreatswordSkeleton : MonoBehaviour, IDamagable
         target = towerTarget;
         SetMoveState();
     }
+    public void ResetStatus()
+    {
+        currentHealth = enemyData.health;
+    }
 
     public void DealDamage(GameObject gameObject)
     {
@@ -99,8 +107,9 @@ public class GreatswordSkeleton : MonoBehaviour, IDamagable
 
     public void TakeDamage(float damage)
     {
-        enemyData.health -= damage;
+        currentHealth -= damage;
         SetHurtState();
+        healthBar.UpdateHealthBar(currentHealth, enemyData.health);
     }
 
     #region private methods

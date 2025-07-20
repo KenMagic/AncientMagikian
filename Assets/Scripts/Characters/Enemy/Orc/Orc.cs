@@ -10,6 +10,8 @@ public class Orc : MonoBehaviour, IDamagable
     public Transform towerTarget;
     public Transform target;
     private Coroutine forgetTargetCoroutine;
+    public HealthBar healthBar;
+    private float currentHealth;
 
     IState attackState;
     IState moveState;
@@ -20,7 +22,8 @@ public class Orc : MonoBehaviour, IDamagable
         stateMachine = GetComponent<StateMachine>();
         animator = GetComponent<Animator>();
         target = GameObject.FindGameObjectWithTag("Tower")?.transform;
-        float currentHealth = enemyData.health;
+        healthBar = GetComponentInChildren<HealthBar>();
+        currentHealth = enemyData.health;
 
         attackState = new OrcAttackState(animator, this, enemyData.attackCooldown, "isAttackTower");
         moveState = new OrcMoveState(animator, this, target);
@@ -75,7 +78,10 @@ public class Orc : MonoBehaviour, IDamagable
         target = towerTarget;
         SetMoveState();
     }
-
+    public void ResetStatus()
+    {
+        currentHealth = enemyData.health;
+    }
     public void DealDamage(GameObject gameObject)
     {
         gameObject.GetComponent<IDamagable>()?.TakeDamage(enemyData.attackDamage);
@@ -98,8 +104,9 @@ public class Orc : MonoBehaviour, IDamagable
 
     public void TakeDamage(float damage)
     {
-        enemyData.health -= damage;
+        currentHealth -= damage;
         SetHurtState();
+        healthBar.UpdateHealthBar(currentHealth, enemyData.health);
     }
 
     #region private methods

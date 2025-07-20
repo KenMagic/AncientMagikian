@@ -17,6 +17,7 @@ public class WerebearHurtState : IState
         {
             animator.SetTrigger("isDeath");
             werebear.HideAfterDelay(1f);
+            WerebearPool.Instance.ReturnObject(werebear.gameObject); 
         }
         else
         {

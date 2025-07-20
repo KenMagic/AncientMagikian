@@ -15,10 +15,7 @@ public class OrcArmoredHitbox : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("PlayerAttack"))
-        {
-            orcArmored.SetHurtState();
-        }
+
     }
     private void OnTriggerExit2D(Collider2D collision)
     {

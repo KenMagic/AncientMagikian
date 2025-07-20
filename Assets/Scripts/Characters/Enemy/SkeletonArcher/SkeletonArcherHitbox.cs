@@ -23,11 +23,6 @@ public class SkeletonArcherHitbox : MonoBehaviour
         {
             skeletonArcher.SetAttackState();
         }
-        if (collision.CompareTag("PlayerAttack"))
-        {
-            skeletonArcher.SetHurtState();
-        }
-
     }
 
     private void OnTriggerExit2D(Collider2D collision)

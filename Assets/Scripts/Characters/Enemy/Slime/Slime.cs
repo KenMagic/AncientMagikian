@@ -11,6 +11,10 @@ public class Slime : MonoBehaviour, IDamagable
     public Transform towerTarget;
     public Transform target;
     private Coroutine forgetTargetCoroutine;
+    private float currentHealth;
+    public HealthBar healthBar;
+
+
 
     IState attackState;
     IState moveState;
@@ -20,7 +24,9 @@ public class Slime : MonoBehaviour, IDamagable
         stateMachine = GetComponent<StateMachine>();
         animator = GetComponent<Animator>();
         target = GameObject.FindGameObjectWithTag("Tower")?.transform;
-        float currentHealth = enemyData.health;
+        healthBar = GetComponentInChildren<HealthBar>();
+
+        currentHealth = enemyData.health;
 
         attackState = new SlimeAttackState(animator, this, enemyData.attackCooldown);
         moveState = new SlimeMoveState(animator, this, target);
@@ -74,6 +80,10 @@ public class Slime : MonoBehaviour, IDamagable
         SetMoveState();
     }
 
+    public void ResetStatus()
+    {
+        currentHealth = enemyData.health;
+    }
     public void DealDamage(GameObject gameObject)
     {
         gameObject.GetComponent<IDamagable>()?.TakeDamage(enemyData.attackDamage);
@@ -99,8 +109,9 @@ public class Slime : MonoBehaviour, IDamagable
 
     public void TakeDamage(float damage)
     {
-        enemyData.health -= damage;
+        currentHealth -= damage;
         SetHurtState();
+        healthBar.UpdateHealthBar(currentHealth, enemyData.health);
     }
 
     #region private methods

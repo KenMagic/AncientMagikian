@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class SkeletonArcherAttackState : IState
@@ -39,11 +40,18 @@ public class SkeletonArcherAttackState : IState
     }
 
     #region private methods
+
     private void ShootArrow()
     {
-        Debug.Log("Skeleton Archer shoots!");
-        anim.SetTrigger("isAttack");
-        skeletonArcher.ShootArrow();
+        skeletonArcher.StartCoroutine(DelayedShoot()); 
     }
+
+    private IEnumerator DelayedShoot()
+    {
+        anim.SetTrigger("isAttack");            
+        yield return new WaitForSeconds(0.7f);    
+        skeletonArcher.ShootArrow();            
+    }
+
     #endregion
 }

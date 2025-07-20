@@ -30,11 +30,6 @@ public class OrcHitbox : MonoBehaviour
             orc.SetAttackState("isAttackTower");
             currentAttackState = "isAttackTower";
         }
-
-        if (collision.CompareTag(tag: "PlayerAttack"))
-        {
-            orc.SetHurtState();
-        }
     }
 
     private void OnTriggerStay2D(Collider2D collision)

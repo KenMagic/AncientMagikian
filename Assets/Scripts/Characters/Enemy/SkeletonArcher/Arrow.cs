@@ -37,7 +37,7 @@ public class Arrow : MonoBehaviour
         if (traveledDistance >= maxDistance)
         {
             Debug.Log("Arrow destroyed: exceeded max distance.");
-            Destroy(gameObject);
+            ArrowPool.Instance.ReturnObject(gameObject);
         }
     }
 
@@ -51,7 +51,7 @@ public class Arrow : MonoBehaviour
         if (collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("Tower"))
         {
             Debug.Log($"Arrow collided with: {collision.gameObject.name}");
-            Destroy(gameObject);
+            ArrowPool.Instance.ReturnObject(gameObject);
             DealDamage(collision.gameObject);
             return;
         }

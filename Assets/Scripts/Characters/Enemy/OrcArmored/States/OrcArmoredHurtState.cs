@@ -17,6 +17,7 @@ public class OrcArmoredHurtState : IState
         {
             anim.SetTrigger("isDeath");
             orcArmored.HideAfterDelay(1f);
+            OrcArmoredPool.Instance.ReturnObject(orcArmored.gameObject);
         }
         else
         {

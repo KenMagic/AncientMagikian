@@ -18,6 +18,7 @@ public class SkeletonArcherHurtState : IState
         {
             anim.SetTrigger("isDeath");
             skeletonArcher.HideAfterDelay(1f);
+            SkeletonArcherPool.Instance.ReturnObject(skeletonArcher.gameObject);
         }
         else
         {

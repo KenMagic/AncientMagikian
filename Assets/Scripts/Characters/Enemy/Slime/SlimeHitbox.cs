@@ -14,10 +14,6 @@ public class SlimeHitbox : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("PlayerAttack"))
-        {
-            slime.SetHurtState();
-        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)

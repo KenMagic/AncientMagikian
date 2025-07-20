@@ -15,10 +15,7 @@ public class GreatswordSkeletonHitbox : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("PlayerAttack"))
-        {
-            greatswordSkeleton.SetHurtState();
-        }
+
     }
 
     private void OnTriggerExit2D(Collider2D collision)

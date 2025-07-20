@@ -15,6 +15,7 @@ public class GreatswordSkeletonHurtState : IState
         {
             animator.SetTrigger("isDeath");
             greatswordSkeleton.HideAfterDelay(1f);
+            GreatswordSkeletonPool.Instance.ReturnObject(greatswordSkeleton.gameObject);
         }
         else
         {

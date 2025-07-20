@@ -11,6 +11,8 @@ public class Werebear : MonoBehaviour, IDamagable
     public Transform towerTarget;
     public Transform target;
     private Coroutine forgetTargetCoroutine;
+    private float currentHealth;
+    public HealthBar healthBar;
 
     IState attackState;
     IState moveState;
@@ -20,7 +22,9 @@ public class Werebear : MonoBehaviour, IDamagable
         stateMachine = GetComponent<StateMachine>();
         animator = GetComponent<Animator>();
         target = GameObject.FindGameObjectWithTag("Tower")?.transform;
-        float currentHealth = enemyData.health;
+        healthBar = GetComponentInChildren<HealthBar>();
+
+        currentHealth = enemyData.health;
         attackState = new WerebearAttackState(animator, this, enemyData.attackCooldown);
         moveState = new WerebearMoveState(animator, this, target);
         hurtState = new WerebearHurtState(animator, this);
@@ -97,10 +101,16 @@ public class Werebear : MonoBehaviour, IDamagable
         StartCoroutine(HideCoroutine(delay));
     }
 
+    public void ResetStatus()
+    {
+        currentHealth = enemyData.health;
+    }
+
     public void TakeDamage(float damage)
     {
-        enemyData.health -= damage;
+        currentHealth -= damage;
         SetHurtState();
+        healthBar.UpdateHealthBar(currentHealth, enemyData.health);
     }
 
     #region private methods

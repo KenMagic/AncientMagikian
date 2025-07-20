@@ -16,6 +16,7 @@ public class SlimeHurtState : IState
         {
             anim.SetTrigger("isDeath");
             slime.HideAfterDelay(1f);
+            SlimePool.Instance.ReturnObject(slime.gameObject);
         }
         else
         {

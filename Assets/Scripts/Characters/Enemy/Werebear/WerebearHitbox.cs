@@ -15,10 +15,7 @@ public class WerebearHitbox : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("PlayerAttack"))
-        {
-            werebear.SetHurtState();
-        }
+        
     }
 
     private void OnTriggerExit2D(Collider2D collision)

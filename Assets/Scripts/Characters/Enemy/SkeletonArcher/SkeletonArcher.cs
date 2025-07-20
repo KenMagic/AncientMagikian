@@ -12,6 +12,8 @@ public class SkeletonArcher : MonoBehaviour, IDamagable
     public Transform target;
     public Transform arrowShoter;
     private Coroutine forgetTargetCoroutine;
+    public HealthBar healthBar;
+    private float currentHealth;
 
     IState attackState;
     IState moveState;
@@ -21,8 +23,9 @@ public class SkeletonArcher : MonoBehaviour, IDamagable
     {
         stateMachine = GetComponent<StateMachine>();
         animator = GetComponent<Animator>();
+        healthBar = GetComponentInChildren<HealthBar>();
         target = GameObject.FindGameObjectWithTag("Tower")?.transform;
-        float currentHealth = enemyData.health;
+        currentHealth = enemyData.health;
 
         attackState = new SkeletonArcherAttackState(animator, this, enemyData.attackCooldown);
         moveState = new SkeletonArcherMoveState(animator, this, target);
@@ -72,7 +75,10 @@ public class SkeletonArcher : MonoBehaviour, IDamagable
         target = towerTarget;
         SetMoveState();
     }
-
+    public void ResetStatus()
+    {
+        currentHealth = enemyData.health;
+    }
     public void StartForgetTargetCoroutine(float delay)
     {
         if (!gameObject.activeInHierarchy) return;
@@ -89,15 +95,19 @@ public class SkeletonArcher : MonoBehaviour, IDamagable
 
     public void TakeDamage(float damage)
     {
-        enemyData.health -= damage;
+        currentHealth -= damage;
         SetHurtState();
+        healthBar.UpdateHealthBar(currentHealth, enemyData.health);
     }
 
     public void ShootArrow()
     {
         if (arrowPrefab == null || target == null) return;
 
-        GameObject arrowGO = Instantiate(arrowPrefab, arrowShoter.position, Quaternion.identity);
+        //GameObject arrowGO = Instantiate(arrowPrefab, arrowShoter.position, Quaternion.identity);
+        GameObject arrowGO = ArrowPool.Instance.GetObject();
+        arrowGO.transform.position = arrowShoter.position;
+
         Arrow arrow = arrowGO.GetComponent<Arrow>();
 
         if (arrow != null)

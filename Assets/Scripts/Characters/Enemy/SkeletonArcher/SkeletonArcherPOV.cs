@@ -20,6 +20,7 @@ public class SkeletonArcherPOV : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
+            Debug.Log($"SkeletonArcherPOV: Trigger entered with {collision.gameObject.name}");
             skeletonArcher.SetAttackState();
         }
         if (collision.CompareTag("Tower"))
