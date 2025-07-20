@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: Rare
   m_EditorClassIdentifier: 
   upgradeName: R
-  description: R
-  icon: {fileID: 0}
+  description: Rare test
+  icon: {fileID: 4441906578842279691, guid: 25d9f81f660f87843a8c39dc6852d2ba, type: 3}
   upgradeType: 1
+  statToUpgrade: 0
+  value: 0.1

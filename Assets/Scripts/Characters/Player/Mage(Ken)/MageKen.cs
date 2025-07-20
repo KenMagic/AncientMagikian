@@ -244,10 +244,20 @@ public class MageKen : MonoBehaviour, IDamagable, IBlockable, IPlayerUpgrade, IB
 
     public void SkillUpgrade(string skillName)
     {
-        if (skillName == "KnightKenAbilitySkill")
+        if (skillName == "MageKenAbilitySkill")
         {
             abilitySkill.Upgrade();
             Debug.Log($"{abilitySkill.SkillName} upgraded to level {abilitySkill.Level}");
+        }
+        else if (skillName == "MageKenUltimateSkill")
+        {
+            ultimateSkill.Upgrade();
+            Debug.Log($"{ultimateSkill.SkillName} upgraded to level {ultimateSkill.Level}");
+        }
+        else if (skillName == "MageKenSpecialAttackSkill")
+        {
+            spec.Upgrade();
+            Debug.Log($"{spec.SkillName} upgraded to level {spec.Level}");
         }
         else
         {

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BigHealth
   m_EditorClassIdentifier: 
   upgradeName: BigH
-  description: BigH
-  icon: {fileID: 0}
+  description: Increase max health
+  icon: {fileID: 2898021474652350614, guid: 25d9f81f660f87843a8c39dc6852d2ba, type: 3}
   upgradeType: 2
   healthBoost: 40
