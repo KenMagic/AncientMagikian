@@ -96,6 +96,7 @@ public class OrcRiderBossKen : MonoBehaviour, IDamagable, IStunable, IBuffable
         if (isDead)
         {
             animator.SetTrigger("Death");
+            Destroy(gameObject, 1f);
             return;
         }
         if (isHurt)

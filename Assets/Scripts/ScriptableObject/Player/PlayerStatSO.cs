@@ -18,4 +18,7 @@ public class PlayerStatsSO : ScriptableObject
     [Header("Other")]
     public string characterName = "Knight Ken";
     public Sprite portrait;
+
+    [Header("Prefab")]
+    public GameObject playerPrefab;
 }

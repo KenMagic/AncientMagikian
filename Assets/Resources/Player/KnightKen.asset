@@ -21,4 +21,5 @@ MonoBehaviour:
   skillCooldown: 5
   ultimateCooldown: 10
   characterName: Knight Ken
-  portrait: {fileID: 0}
+  portrait: {fileID: -5711848221618334454, guid: 2082a3753ee701940b148487426102cf, type: 3}
+  playerPrefab: {fileID: 5943109108098400057, guid: e5447e108fb829144904c267365c1557, type: 3}

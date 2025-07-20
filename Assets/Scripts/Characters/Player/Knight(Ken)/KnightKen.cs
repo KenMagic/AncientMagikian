@@ -55,6 +55,10 @@ public class KnightKen : MonoBehaviour, IDamagable, IBlockable, IPlayerUpgrade, 
 
     public HealthBar healthBar; // Reference to the health bar UI
 
+    //cooldown
+    private float abilityCooldown = 0f;
+    private float ultimateCooldown = 0f;
+
 
     void Start()
     {
@@ -101,6 +105,8 @@ public class KnightKen : MonoBehaviour, IDamagable, IBlockable, IPlayerUpgrade, 
         {
             return;
         }
+        ultimateCooldown -= Time.deltaTime;
+        abilityCooldown -= Time.deltaTime;
         if (!isAttacking && !IsBlocking)
         {
 
@@ -114,14 +120,16 @@ public class KnightKen : MonoBehaviour, IDamagable, IBlockable, IPlayerUpgrade, 
                 IsBlocking = true;
                 stateMachine.SetState(blockState);
             }
-            else if (Input.GetKeyDown(KeyCode.Space)) // Example for ability input
+            else if (Input.GetKeyDown(KeyCode.Space) && ultimateCooldown <= 0) // Example for ability input
             {
                 isAttacking = true;
+                ultimateCooldown = ultimateSkill.Cooldown;
                 stateMachine.SetState(ultimateState);
             }
-            else if (Input.GetKeyDown(KeyCode.E)) // Example for ultimate input
+            else if (Input.GetKeyDown(KeyCode.E) && abilityCooldown <= 0) // Example for ultimate input
             {
                 isAttacking = true;
+                abilityCooldown = abilitySkill.Cooldown;
                 stateMachine.SetState(abilityState);
             }
             // Handle movement input and state transitions here

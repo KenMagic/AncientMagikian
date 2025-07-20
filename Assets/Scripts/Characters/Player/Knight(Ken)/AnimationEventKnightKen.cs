@@ -70,13 +70,11 @@ public void UseUltimate()
                 {
                     damagable.TakeDamage(knightKen.ultimateSkill.ultimateDamage);
                 }
-                col.TryGetComponent<IStunable>(out var stunable);
-                if (stunable != null)
+                col.TryGetComponent<IBuffable>(out var buffable);
+                if (buffable != null)
                 {
-                    stunable.IsStunned = true;
-                    Debug.Log($"{col.name} is stunned for {duration} seconds.");
+                    buffable.BuffManager.ApplyBuff(new StunDebuff(duration));
                 }
-                StartCoroutine(ResetKnockback(col, duration));
             }
         }
     }

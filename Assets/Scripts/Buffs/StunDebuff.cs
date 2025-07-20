@@ -5,7 +5,16 @@ public class StunDebuff : IBuff
 
     public BuffEffectType EffectType => BuffEffectType.Stun;
 
-    public float Duration => 2f;
+    public float Duration { get; private set; }
+
+    public StunDebuff()
+    {
+        Duration = 3f;
+    }
+    public StunDebuff(float duration)
+    {
+        Duration = duration;
+    }
 
     public void Apply(GameObject target)
     {

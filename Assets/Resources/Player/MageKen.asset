@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b049cab3c4f1e143b030f32f468330f, type: 3}
+  m_Name: MageKen
+  m_EditorClassIdentifier: 
+  maxHealth: 300
+  moveSpeed: 5
+  damage: 10
+  attackSpeed: 1
+  critChance: 0.1
+  defense: 5
+  skillCooldown: 5
+  ultimateCooldown: 30
+  characterName: Mage Ken
+  portrait: {fileID: 1457491203435894738, guid: 6588193dec4922b4cb9fbe28ae837f0e, type: 3}
+  playerPrefab: {fileID: 2166590492706083707, guid: ba7a68faf132d744db5c2d8166398352, type: 3}

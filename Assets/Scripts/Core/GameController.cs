@@ -4,6 +4,8 @@ public class GameController : MonoBehaviour
 {
     public static GameController Instance { get; private set; }
 
+    public PlayerStatsSO currentPlayer { get; set; }
+
     public enum GameState
     {
         MainMenu,
