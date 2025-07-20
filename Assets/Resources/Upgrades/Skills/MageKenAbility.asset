@@ -9,12 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: edac1e12aae283544a6d4c7f6cafd6ab, type: 3}
-  m_Name: Rare
+  m_Script: {fileID: 11500000, guid: cf1d7f61119ed824ca96a5478812aef1, type: 3}
+  m_Name: MageKenAbility
   m_EditorClassIdentifier: 
-  upgradeName: R
-  description: Rare test
-  icon: {fileID: 4441906578842279691, guid: 25d9f81f660f87843a8c39dc6852d2ba, type: 3}
+  upgradeName: Ability skill
+  description: Upgrade your ability skill +1
+  icon: {fileID: -863085938886467031, guid: 25d9f81f660f87843a8c39dc6852d2ba, type: 3}
   upgradeType: 1
-  statToUpgrade: 0
-  value: 0.1
+  skillName: MageKenAbilitySkill

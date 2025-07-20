@@ -318,6 +318,7 @@ MonoBehaviour:
   stateMachine: {fileID: 0}
   towerTarget: {fileID: 0}
   target: {fileID: 0}
+  healthBar: {fileID: 0}
 --- !u!50 &5438585767135855055
 Rigidbody2D:
   serializedVersion: 5

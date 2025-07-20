@@ -229,6 +229,11 @@ public class KnightKen : MonoBehaviour, IDamagable, IBlockable, IPlayerUpgrade, 
             abilitySkill.Upgrade();
             Debug.Log($"{abilitySkill.SkillName} upgraded to level {abilitySkill.Level}");
         }
+        else if (skillName == "KnightKenUltimateSkill")
+        {
+            ultimateSkill.Upgrade();
+            Debug.Log($"{ultimateSkill.SkillName} upgraded to level {ultimateSkill.Level}");
+        }
         else
         {
             Debug.LogWarning($"Skill {skillName} not recognized for upgrade.");

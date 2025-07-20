@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: Epic
   m_EditorClassIdentifier: 
   upgradeName: E
-  description: E
-  icon: {fileID: 0}
+  description: Epic test
+  icon: {fileID: -8336339887504312587, guid: 25d9f81f660f87843a8c39dc6852d2ba, type: 3}
   upgradeType: 2
+  statToUpgrade: 0
+  value: 0.1
