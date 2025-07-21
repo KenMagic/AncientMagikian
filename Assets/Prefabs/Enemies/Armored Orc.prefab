@@ -157,7 +157,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -319,7 +319,8 @@ MonoBehaviour:
   stateMachine: {fileID: 0}
   towerTarget: {fileID: 0}
   target: {fileID: 0}
-  healthBar: {fileID: 0}
+  currentHealth: 0
+  isDeath: 0
 --- !u!50 &5438585767135855055
 Rigidbody2D:
   serializedVersion: 5

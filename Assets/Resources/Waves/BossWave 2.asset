@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 725cc2b21293f0d478ec4f8ca9c392d1, type: 3}
-  m_Name: WaveT2
+  m_Name: BossWave 2
   m_EditorClassIdentifier: 
   waveItems:
-  - enemyPrefab: {fileID: 1061233826449729696, guid: 5620d7fbcf2a9c1498d4a2ee33464817, type: 3}
-    type: 3
+  - enemyPrefab: {fileID: 8022856399015679537, guid: e7410114ecc5d72429322607af17bfc2, type: 3}
+    type: 6
     count: 1
-    spawnInterval: 0
+    spawnInterval: 2
   delayAfterWave: 5

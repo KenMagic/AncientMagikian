@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 725cc2b21293f0d478ec4f8ca9c392d1, type: 3}
+  m_Name: Wave 5
+  m_EditorClassIdentifier: 
+  waveItems:
+  - enemyPrefab: {fileID: 6213383173839415395, guid: b08d000bcceafc94caba8f48bc1f0b42, type: 3}
+    type: 1
+    count: 20
+    spawnInterval: 3
+  - enemyPrefab: {fileID: 1061233826449729696, guid: 5620d7fbcf2a9c1498d4a2ee33464817, type: 3}
+    type: 3
+    count: 20
+    spawnInterval: 3.5
+  - enemyPrefab: {fileID: 4424576797175417311, guid: 076a38aaffeaac14a948448f50328415, type: 3}
+    type: 2
+    count: 10
+    spawnInterval: 4
+  - enemyPrefab: {fileID: 653898572327201778, guid: f6117c63051cf8f4090a33bded1b6cbd, type: 3}
+    type: 5
+    count: 10
+    spawnInterval: 4.5
+  - enemyPrefab: {fileID: 4507714591334294003, guid: b9861e396a085004486239aae74bcd65, type: 3}
+    type: 4
+    count: 15
+    spawnInterval: 3.8
+  delayAfterWave: 5
