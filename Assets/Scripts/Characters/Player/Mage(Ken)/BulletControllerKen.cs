@@ -57,7 +57,7 @@ public class BulletControllerKen : MonoBehaviour
                 Instantiate(explosionPrefab, transform.position, Quaternion.identity);
             }
 
-            Destroy(gameObject);
+            FireBallPool.Instance.ReturnObject(gameObject);
         }
     }
 
