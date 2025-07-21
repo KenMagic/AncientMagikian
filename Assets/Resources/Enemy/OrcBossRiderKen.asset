@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: OrcBossRiderKen
   m_EditorClassIdentifier: 
   enemyName: Orc Boss Rider (Ken)
-  health: 500
+  health: 1000
   speed: 2
-  attackDamage: 9
+  attackDamage: 60
   attackCooldown: 1
   exp: 200

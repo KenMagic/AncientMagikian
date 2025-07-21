@@ -15,6 +15,6 @@ MonoBehaviour:
   enemyName: Skeleton Greatsword
   health: 400
   speed: 0.5
-  attackDamage: 35
+  attackDamage: 40
   attackCooldown: 5
   exp: 12
