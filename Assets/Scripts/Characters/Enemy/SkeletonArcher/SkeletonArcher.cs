@@ -56,16 +56,19 @@ public class SkeletonArcher : MonoBehaviour, IDamagable
     }
     public void SetAttackState()
     {
+        if (isDeath) return;
         stateMachine.SetState(attackState);
     }
 
     public void SetMoveState()
     {
+        if (isDeath) return;
         stateMachine.SetState(moveState);
     }
 
     public void SetHurtState()
     {
+        if (isDeath) return;
         stateMachine.SetState(hurtState);
     }
 

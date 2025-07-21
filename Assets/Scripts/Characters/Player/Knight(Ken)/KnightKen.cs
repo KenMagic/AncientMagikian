@@ -106,6 +106,7 @@ public class KnightKen : MonoBehaviour, IDamagable, IBlockable, IPlayerUpgrade, 
         {
             return;
         }
+        
         ultimateCooldown -= Time.deltaTime;
         abilityCooldown -= Time.deltaTime;
         attackCooldown -= Time.deltaTime;

@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class OrcArmored : MonoBehaviour
+public class OrcArmored : MonoBehaviour, IDamagable
 {
     [SerializeField] public EnemySO enemyData;
     [SerializeField] private Animator animator;
@@ -56,16 +56,19 @@ public class OrcArmored : MonoBehaviour
 
     public void SetAttackState()
     {
+        if (isDeath) return;
         stateMachine.SetState(attackState);
     }
 
     public void SetMoveState()
     {
+        if (isDeath) return;
         stateMachine.SetState(moveState);
     }
 
     public void SetHurtState()
     {
+        if (isDeath) return;
         stateMachine.SetState(hurtState);
     }
 
@@ -109,6 +112,7 @@ public class OrcArmored : MonoBehaviour
         int chance = Random.Range(0, 100);
         if (chance < 35)
         {
+            Debug.LogWarning("chance" + chance);
             animator.SetTrigger("isBlock");
         }
         else

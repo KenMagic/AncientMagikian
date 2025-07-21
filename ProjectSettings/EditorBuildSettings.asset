@@ -5,27 +5,18 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/Scenes/TestScene1.unity
-    guid: 33927ca539dc3fd4bb2289516041ca51
-  - enabled: 1
-    path: Assets/Scenes/MainCharacter.unity
-    guid: f6c33f57662c496468be4f650abac2b5
-  - enabled: 1
-    path: Assets/Scenes/ChooseHero.unity
-    guid: 3b7723f324a577549a060ae12cf5b393
-  - enabled: 1
-    path: Assets/Scenes/MapScence.unity
-    guid: 6d999c473ff38324491f5c8fb853150c
-  - enabled: 1
-    path: Assets/Scenes/MapScenceOld.unity
-    guid: 0a67b4b7791d838419d3178bb4be3fb9
   - enabled: 1
     path: Assets/Scenes/StartScene.unity
     guid: 550a5ce61e63b964fa229cd5389b1c30
   - enabled: 1
+    path: Assets/Scenes/ChooseHero.unity
+    guid: 3b7723f324a577549a060ae12cf5b393
+  - enabled: 1
     path: Assets/Scenes/EndScene.unity
     guid: 84164a5b2eede3046b15d649eb6befb4
+  - enabled: 1
+    path: Assets/Scenes/GameScene.unity
+    guid: c85d05a3820ee4141b2978f55747c08f
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0
