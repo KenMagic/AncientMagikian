@@ -34,8 +34,8 @@ public class OrcBossKenAnimationEvent : MonoBehaviour
             }
             target.TryGetComponent<IBuffable>(out var buffable);
             ApplyBleedDebuff();
-            damagable.TakeDamage(20f);
-            orcBossKen.Heal(20f);
+            damagable.TakeDamage(orcBossKen.enemyData.attackDamage);
+            orcBossKen.Heal(orcBossKen.enemyData.attackDamage);
             SpawnHealEffect();
         }
     }
@@ -103,14 +103,14 @@ public class OrcBossKenAnimationEvent : MonoBehaviour
                 return;
             }
             ApplyBleedDebuff();
-            var damage = 50f; // Example damage value for ultimate
+            var damage = orcBossKen.enemyData.attackDamage*5; // Example damage value for ultimate
             if(target.TryGetComponent<IBuffable>(out var buffable))
             {
                 //check if contain bleed debuff
                 var bleedDebuff = buffable.BuffManager.GetActiveBuffs().Find(b => b is BleedDebuff);
                 if (bleedDebuff != null)
                 {
-                    damage += (bleedDebuff as BleedDebuff).StackCount * 10f;
+                    damage += (bleedDebuff as BleedDebuff).StackCount * orcBossKen.enemyData.attackDamage;
                     Debug.LogWarning($"OrcBossKen applied bleed debuff with {((BleedDebuff)bleedDebuff).StackCount} stacks, increasing damage to {damage}.");
                     SpawnCursedEffect();
                     buffable.BuffManager.RemoveBuff(bleedDebuff);

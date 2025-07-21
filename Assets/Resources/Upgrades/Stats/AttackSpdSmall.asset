@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: edac1e12aae283544a6d4c7f6cafd6ab, type: 3}
-  m_Name: GreatAttackUpgrade
+  m_Name: AttackSpdSmall
   m_EditorClassIdentifier: 
-  upgradeName: Attack
-  description: Atk+15
-  icon: {fileID: 4441906578842279691, guid: 25d9f81f660f87843a8c39dc6852d2ba, type: 3}
-  upgradeType: 2
-  statToUpgrade: 0
-  value: 15
+  upgradeName: AtkSpd
+  description: AtkSpd+5%
+  icon: {fileID: 6350608319972268768, guid: 25d9f81f660f87843a8c39dc6852d2ba, type: 3}
+  upgradeType: 0
+  statToUpgrade: 1
+  value: 0.05

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: MageKenAbility
   m_EditorClassIdentifier: 
   upgradeName: Ability skill
-  description: Upgrade your ability skill +1
-  icon: {fileID: -863085938886467031, guid: 25d9f81f660f87843a8c39dc6852d2ba, type: 3}
-  upgradeType: 1
+  description: Ability+1
+  icon: {fileID: -3017422033641797067, guid: 6588193dec4922b4cb9fbe28ae837f0e, type: 3}
+  upgradeType: 2
   skillName: MageKenAbilitySkill

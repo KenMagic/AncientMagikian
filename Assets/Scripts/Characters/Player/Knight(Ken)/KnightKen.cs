@@ -59,6 +59,7 @@ public class KnightKen : MonoBehaviour, IDamagable, IBlockable, IPlayerUpgrade, 
     //cooldown
     private float abilityCooldown = 0f;
     private float ultimateCooldown = 0f;
+    private float attackCooldown = 0f;
 
 
     void Start()
@@ -108,11 +109,13 @@ public class KnightKen : MonoBehaviour, IDamagable, IBlockable, IPlayerUpgrade, 
         }
         ultimateCooldown -= Time.deltaTime;
         abilityCooldown -= Time.deltaTime;
+        attackCooldown -= Time.deltaTime;
         if (!isAttacking && !IsBlocking)
         {
 
-            if (Input.GetMouseButtonDown(0)) // Example for attack input
+            if (Input.GetMouseButtonDown(0) && attackCooldown<=0) // Example for attack input
             {
+                attackCooldown = playerData.attackSpeed / (1f + characterStats.CurrentAttackSpeed);
                 isAttacking = true;
                 stateMachine.SetState(attackState);
             }

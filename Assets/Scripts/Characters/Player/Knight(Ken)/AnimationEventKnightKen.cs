@@ -72,7 +72,7 @@ public void UseUltimate()
                 {
                     damagable.TakeDamage(knightKen.ultimateSkill.ultimateDamage);
                 }
-                col.TryGetComponent<IBuffable>(out var buffable);
+                var buffable = col.GetComponentInParent<IBuffable>();
                 if (buffable != null)
                 {
                     buffable.BuffManager.ApplyBuff(new StunDebuff(duration));

@@ -129,7 +129,7 @@ public class MageKen : MonoBehaviour, IDamagable, IBlockable, IPlayerUpgrade, IB
             if (Input.GetMouseButtonDown(0) && attackCooldown <=0) // Example for attack input
             {
                 isAttacking = true;
-                attackCooldown = 1f;
+                attackCooldown = playerData.attackSpeed / (1f + characterStats.CurrentAttackSpeed);
                 ShootNormal();
                 stateMachine.SetState(attackState);
             }

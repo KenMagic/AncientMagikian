@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: edac1e12aae283544a6d4c7f6cafd6ab, type: 3}
-  m_Name: GreatAttackUpgrade
+  m_Name: MedSpd
   m_EditorClassIdentifier: 
-  upgradeName: Attack
-  description: Atk+15
-  icon: {fileID: 4441906578842279691, guid: 25d9f81f660f87843a8c39dc6852d2ba, type: 3}
-  upgradeType: 2
-  statToUpgrade: 0
-  value: 15
+  upgradeName: Speed
+  description: Spd+8%
+  icon: {fileID: -7521871343455644280, guid: 25d9f81f660f87843a8c39dc6852d2ba, type: 3}
+  upgradeType: 1
+  statToUpgrade: 2
+  value: 0.08

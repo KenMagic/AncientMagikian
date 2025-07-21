@@ -12,6 +12,7 @@ public class CharacterStats
     public float CurrentCritChance { get; set; }
     public float CurrentSkillCooldown { get; set; }
     public float CurrentUltimateCooldown { get; set; }
+    public float CurrentAttackSpeed { get; set; }
 
     public CharacterStats(PlayerStatsSO baseStats)
     {
@@ -24,6 +25,7 @@ public class CharacterStats
         CurrentCritChance = baseStats.critChance;
         CurrentSkillCooldown = baseStats.skillCooldown;
         CurrentUltimateCooldown = baseStats.ultimateCooldown;
+        CurrentAttackSpeed = 0f;
     }
 
     //UPGRADE METHODS
@@ -34,14 +36,15 @@ public class CharacterStats
             case StatType.Attack:
                 CurrentAttack += amount;
                 break;
-            case StatType.Defense:
-                CurrentDefense += amount;
+            case StatType.AttackSpeed:
+                CurrentAttackSpeed += amount;
                 break;
             case StatType.Speed:
                 CurrentSpeed += amount;
                 break;
             case StatType.Health:
                 MaxHealth += amount;
+                CurrentHealth += amount;
                 break;
         }
     }

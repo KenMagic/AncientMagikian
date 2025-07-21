@@ -9,12 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: edac1e12aae283544a6d4c7f6cafd6ab, type: 3}
-  m_Name: GreatAttackUpgrade
+  m_Script: {fileID: 11500000, guid: cf1d7f61119ed824ca96a5478812aef1, type: 3}
+  m_Name: KnightKenUltimate
   m_EditorClassIdentifier: 
-  upgradeName: Attack
-  description: Atk+15
-  icon: {fileID: 4441906578842279691, guid: 25d9f81f660f87843a8c39dc6852d2ba, type: 3}
-  upgradeType: 2
-  statToUpgrade: 0
-  value: 15
+  upgradeName: Ultimate
+  description: Ult+1
+  icon: {fileID: 5838714716855569224, guid: 8d4fcfad26f903b499e14c0a8e6fe001, type: 3}
+  upgradeType: 3
+  skillName: KnightKenAbilitySkill

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   upgradeName: Attack
   description: Atk+10
-  icon: {fileID: 4469994662413906233, guid: 25d9f81f660f87843a8c39dc6852d2ba, type: 3}
+  icon: {fileID: -8336339887504312587, guid: 25d9f81f660f87843a8c39dc6852d2ba, type: 3}
   upgradeType: 1
   statToUpgrade: 0
   value: 10

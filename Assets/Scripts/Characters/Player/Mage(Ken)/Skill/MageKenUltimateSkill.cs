@@ -1,7 +1,7 @@
 using UnityEngine;
 public class MageKenUltimateSkill : ISkill
 {
-    public string SkillName => "Mage Ken's Ultimate Skill";
+    public string SkillName => "MageKenUltimateSkill";
 
     public float Cooldown { get; private set; } = 30f;
     public int Level { get; private set; } = 1;

@@ -1,3 +1,5 @@
+using System;
+using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -20,8 +22,15 @@ public class BulletControllerKen : MonoBehaviour
     }
     void Start()
     {
-        Destroy(this.gameObject,3f);
+        StartCoroutine(DestroyAfterSeconds(3f));
     }
+
+    private IEnumerator DestroyAfterSeconds(float v)
+    {
+        yield return new WaitForSeconds(v);
+        FireBallPool.Instance.ReturnObject(gameObject);
+    }
+
     void Update()
     {
         transform.position += (Vector3)(moveDirection * speed * Time.deltaTime);

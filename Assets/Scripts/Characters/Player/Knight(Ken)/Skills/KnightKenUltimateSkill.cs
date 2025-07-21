@@ -1,7 +1,7 @@
 using UnityEngine;
 public class KnightKenUltimateSkill : ISkill
 {
-    public string SkillName => "Knight Ken's Ultimate Skill";
+    public string SkillName => "KnightKenAbilitySkill";
 
     public float Cooldown { get; private set; } = 30f;
     public int Level { get; private set; } = 1;
@@ -27,6 +27,7 @@ public class KnightKenUltimateSkill : ISkill
     {
         Level++;
         StunDuration *= 1.2f; // Increase stun duration by 20%
+        ultimateDamage *= 1.1f;
         Debug.Log($"{SkillName} upgraded to level {Level}. Stun duration is now {StunDuration} seconds.");
     }
 }

@@ -2,7 +2,7 @@ using UnityEngine;
 public enum StatType
 {
     Attack,
-    Defense,
+    AttackSpeed,
     Speed,
     Health
 }

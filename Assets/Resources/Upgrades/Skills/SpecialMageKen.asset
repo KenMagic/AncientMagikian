@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf1d7f61119ed824ca96a5478812aef1, type: 3}
   m_Name: SpecialMageKen
   m_EditorClassIdentifier: 
-  upgradeName: Spec
-  description: Upgrade your special attack
-  icon: {fileID: -3942219174046340947, guid: 25d9f81f660f87843a8c39dc6852d2ba, type: 3}
+  upgradeName: Special
+  description: Spec+1
+  icon: {fileID: 3729762512345548994, guid: 319f31aa30d815547b8409dc77a7867c, type: 3}
   upgradeType: 1
   skillName: MageKenSpecialAttackSkill
