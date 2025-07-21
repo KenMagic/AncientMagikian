@@ -1,55 +1,44 @@
-using System;
-using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class BulletControllerKen : MonoBehaviour
 {
     public float speed = 10f;
+    public float damage = 10f;
+    public float maxDistance = 30f;
+
     private Vector2 moveDirection;
+    private bool hasDirection = false;
+    private Vector3 startPosition;
 
     public GameObject explosionPrefab;
-    public float damage = 10f;
 
-    public void SetDirection(Vector2 dir)
+    public void SetDirection(Vector2 direction)
     {
-        moveDirection = dir.normalized;  // ✅ Đảm bảo là vector đơn vị
+        moveDirection = direction.normalized;
+        startPosition = transform.position;
+        hasDirection = true;
     }
 
     public void SetDamage(float dmg)
     {
         damage = dmg;
     }
-    void Start()
-    {
-        StartCoroutine(DestroyAfterSeconds(3f));
-    }
-
-    private IEnumerator DestroyAfterSeconds(float v)
-    {
-        yield return new WaitForSeconds(v);
-        FireBallPool.Instance.ReturnObject(gameObject);
-    }
 
     void Update()
     {
+        if (!hasDirection) return;
+
+        // Di chuyển
         transform.position += (Vector3)(moveDirection * speed * Time.deltaTime);
+
+        // Kiểm tra khoảng cách
+        float traveledDistance = Vector3.Distance(startPosition, transform.position);
+        if (traveledDistance >= maxDistance)
+        {
+            Debug.Log("FireBall destroyed: exceeded max distance.");
+            FireBallPool.Instance.ReturnObject(gameObject);
+        }
     }
-
-    //private void OnTriggerEnter2D(Collider2D collision)
-    //{
-    //    if (collision.CompareTag("Hitbox"))
-    //    {
-    //        if (explosionPrefab != null)
-    //        {
-    //            Instantiate(explosionPrefab, transform.position, Quaternion.identity);
-    //        }
-
-    //        Destroy(gameObject); // Hủy đạn
-    //    }
-    //    // Tạo hiệu ứng nổ
-
-    //}
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -64,13 +53,11 @@ public class BulletControllerKen : MonoBehaviour
             if (explosionPrefab != null)
             {
                 Instantiate(explosionPrefab, transform.position, Quaternion.identity);
-                AudioManager.Instance.PlayBlast();
-                AudioManager.Instance.PlayHit();
+                AudioManager.Instance?.PlayBlast();
+                AudioManager.Instance?.PlayHit();
             }
 
             FireBallPool.Instance.ReturnObject(gameObject);
         }
     }
-
-
 }
