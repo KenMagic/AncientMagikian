@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -24,6 +25,8 @@ public class GameController : MonoBehaviour
 
     public int HighestWave { get; set; } = 0;
     public int HighestLevel { get; set; } = 0;
+
+    public List<UpgradeSO> allUpgrades;
 
     private void Awake()
     {
@@ -100,6 +103,7 @@ public class GameController : MonoBehaviour
         if (!isRestart)
         {
             CurrentPlayer = null;
+            allUpgrades = null;
         }
         GameWin = false;
         HighestWave = 0;

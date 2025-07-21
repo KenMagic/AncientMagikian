@@ -17,7 +17,7 @@ public class UpgradeUIManager : MonoBehaviour
     [Range(0, 100)] public int legendaryChance = 5;
 
     private GameObject player;
-    
+
     public static UpgradeUIManager Instance { get; private set; }
 
     private void Awake()
@@ -39,6 +39,7 @@ public class UpgradeUIManager : MonoBehaviour
 
     public void ShowRandomUpgrades(int count)
     {
+        SetUpgrades();
         player = GameObject.FindGameObjectWithTag("Player");
         // Clear old UI
         foreach (Transform child in cardContainer)
@@ -53,7 +54,7 @@ public class UpgradeUIManager : MonoBehaviour
             if (upgrade == null) continue;
 
             selectedUpgrades.Add(upgrade);
-            availableUpgrades.Remove(upgrade); 
+            availableUpgrades.Remove(upgrade);
 
             UpgradeCardUI ui = Instantiate(upgradeCardUIPrefab, cardContainer);
             ui.Setup(upgrade, player);
@@ -96,5 +97,10 @@ public class UpgradeUIManager : MonoBehaviour
         gameObject.SetActive(false);
         GameController.Instance.ResumeGame();
         GameSceneControl.Instance.CheckExp();
+    }
+
+    public void SetUpgrades()
+    {
+        allUpgrades = GameController.Instance.allUpgrades;
     }
 }

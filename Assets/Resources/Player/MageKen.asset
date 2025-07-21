@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: MageKen
   m_EditorClassIdentifier: 
   maxHealth: 300
-  moveSpeed: 5
-  damage: 10
+  moveSpeed: 2
+  damage: 40
   attackSpeed: 1
   critChance: 0.1
   defense: 5

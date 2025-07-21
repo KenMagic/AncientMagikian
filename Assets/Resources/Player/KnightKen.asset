@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: KnightKen
   m_EditorClassIdentifier: 
   maxHealth: 1000
-  moveSpeed: 5
-  damage: 10
+  moveSpeed: 2
+  damage: 70
   attackSpeed: 1
   critChance: 0.1
   defense: 5

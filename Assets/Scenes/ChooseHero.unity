@@ -1116,6 +1116,18 @@ MonoBehaviour:
   availableCharacters:
   - {fileID: 11400000, guid: 338ab0f5889ca7245b79bba1a9febe2d, type: 2}
   - {fileID: 11400000, guid: e9b46a8c0e51000439dd0c21eada4cfc, type: 2}
+  playerUpgradeMappings:
+  - playerSO: {fileID: 11400000, guid: 338ab0f5889ca7245b79bba1a9febe2d, type: 2}
+    upgrades:
+    - {fileID: 11400000, guid: 6fedf1836663f99498b8c9e9629a470f, type: 2}
+    - {fileID: 11400000, guid: e19e60b94fbbc984eba142fbe9a2f8d2, type: 2}
+    - {fileID: 11400000, guid: 31b7686161e90704898d77c0d4de69e5, type: 2}
+  - playerSO: {fileID: 11400000, guid: e9b46a8c0e51000439dd0c21eada4cfc, type: 2}
+    upgrades:
+    - {fileID: 11400000, guid: 6fedf1836663f99498b8c9e9629a470f, type: 2}
+    - {fileID: 11400000, guid: e19e60b94fbbc984eba142fbe9a2f8d2, type: 2}
+    - {fileID: 11400000, guid: 31b7686161e90704898d77c0d4de69e5, type: 2}
+    - {fileID: 11400000, guid: 48f5f6b2f410320478b9f9d9a8eb0538, type: 2}
   thumbnailPrefab: {fileID: 6405302423844949967, guid: d9612c9ec3a028942aa4fffb36e78e21, type: 3}
   thumbnailParent: {fileID: 2001224566}
   detailDisplay: {fileID: 1745652791}

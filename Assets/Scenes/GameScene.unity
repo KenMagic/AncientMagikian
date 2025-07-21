@@ -221,6 +221,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CurrentPlayer: {fileID: 11400000, guid: e9b46a8c0e51000439dd0c21eada4cfc, type: 2}
+  allUpgrades: []
 --- !u!4 &131078689
 Transform:
   m_ObjectHideFlags: 0
@@ -543,6 +544,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waves:
+  - {fileID: 11400000, guid: fc1fba1605a8ffe40b6e889aeaccdea1, type: 2}
   - {fileID: 11400000, guid: 4f59b782d30034b40908653e083ccc6e, type: 2}
   spawnPoint: {fileID: 1002114396}
 --- !u!4 &308125349
@@ -64948,8 +64950,8 @@ Canvas:
   m_GameObject: {fileID: 2017475707}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_RenderMode: 1
+  m_Camera: {fileID: 1475559579}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -64960,7 +64962,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_TargetDisplay: 0
 --- !u!224 &2017475711
 RectTransform:
@@ -64996,12 +64998,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   upgradeCardUIPrefab: {fileID: 5239456403926312552, guid: aa8d7206f15f5c14b8f3e3f62506f4d7, type: 3}
   cardContainer: {fileID: 191617098}
-  allUpgrades:
-  - {fileID: 11400000, guid: 6fedf1836663f99498b8c9e9629a470f, type: 2}
-  - {fileID: 11400000, guid: e19e60b94fbbc984eba142fbe9a2f8d2, type: 2}
-  - {fileID: 11400000, guid: 31b7686161e90704898d77c0d4de69e5, type: 2}
-  - {fileID: 11400000, guid: 08c46a4d57ec8944c933be95dacddb44, type: 2}
-  - {fileID: 11400000, guid: 48f5f6b2f410320478b9f9d9a8eb0538, type: 2}
+  allUpgrades: []
   commonChance: 50
   rareChance: 30
   epicChance: 15
