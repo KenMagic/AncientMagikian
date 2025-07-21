@@ -64,6 +64,8 @@ public class BulletControllerKen : MonoBehaviour
             if (explosionPrefab != null)
             {
                 Instantiate(explosionPrefab, transform.position, Quaternion.identity);
+                AudioManager.Instance.PlayBlast();
+                AudioManager.Instance.PlayHit();
             }
 
             FireBallPool.Instance.ReturnObject(gameObject);

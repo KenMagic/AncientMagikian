@@ -176,6 +176,7 @@ public class MageKen : MonoBehaviour, IDamagable, IBlockable, IPlayerUpgrade, IB
             }
             else
             {
+                AudioManager.Instance.PlayHit();
                 characterStats.CurrentHealth -= damage;
                 if (healthBar != null)
                 {

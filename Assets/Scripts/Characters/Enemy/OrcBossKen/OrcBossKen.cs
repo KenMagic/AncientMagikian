@@ -63,7 +63,7 @@ public class OrcBossKen : MonoBehaviour, IDamagable, IStunable, IBuffable
         {
             target = GameObject.FindGameObjectWithTag("Player");
         }
-
+        AudioManager.Instance.PlayBGM(AudioManager.Instance.boss1Theme);
 
     }
 

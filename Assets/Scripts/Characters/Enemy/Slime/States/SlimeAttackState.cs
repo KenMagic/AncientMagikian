@@ -41,7 +41,7 @@ public class SlimeAttackState : IState
     #region private methods
     private void Attack()
     {
-
+        AudioManager.Instance.PlayMelee();
         int chance = Random.Range(0, 100);
         Debug.Log($"Slime Attack Chance: {chance}");
         if (chance < 10)

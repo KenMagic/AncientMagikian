@@ -86,7 +86,7 @@ public class OrcRiderBossKen : MonoBehaviour, IDamagable, IStunable, IBuffable
         {
             target = GameObject.FindGameObjectWithTag("Player");
         }
-
+        AudioManager.Instance.PlayBGM(AudioManager.Instance.boss2Theme);
     }
 
 

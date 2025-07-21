@@ -34,6 +34,7 @@ public class SkeletonArcherAttackState : IState
 
         if (cooldownTimer < 0f)
         {
+            AudioManager.Instance.PlayAttack();
             ShootArrow();
             cooldownTimer = attackCooldown;
         }

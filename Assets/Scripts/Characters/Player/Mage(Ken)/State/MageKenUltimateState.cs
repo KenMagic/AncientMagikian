@@ -10,6 +10,7 @@ public class MageKenUltimateState : IState
 
     public void OnEnter()
     {
+        AudioManager.Instance.PlayAttack();
         Debug.Log("MageKenUltimateState: OnEnter");
         mageKen.buffManager.ApplyBuff(new VoHanMaLucBuff(mageKen.ultimateSkill.Duration));
     }

@@ -42,7 +42,7 @@ public class OrcArmoredAttackState : IState
     #region private methods
     private void Attack()
     {
-
+        AudioManager.Instance.PlayMelee();
         int chance = Random.Range(0, 100);
         Debug.Log($"orcArmored Attack Chance: {chance}");
         if (chance < 35)

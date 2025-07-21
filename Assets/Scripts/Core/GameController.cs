@@ -51,16 +51,19 @@ public class GameController : MonoBehaviour
     // ========================
 
     public void ChangeToMainMenu()
-    {
+    {     
         ResetStatus(false);
         SceneManager.LoadScene("StartScene");
+        AudioManager.Instance.PlayBGM(AudioManager.Instance.mainTheme);
         ChangeState(GameState.MainMenu);
         Time.timeScale = 1f;
     }
 
     public void StartGame()
     {
+        
         SceneManager.LoadScene("GameScene");
+        AudioManager.Instance.PlayBGM(AudioManager.Instance.battleTheme);
         ChangeState(GameState.Playing);
     }
 
@@ -80,6 +83,14 @@ public class GameController : MonoBehaviour
     public void GameOver()
     {
         SceneManager.LoadScene("EndScene");
+        if (GameWin)
+        {
+            AudioManager.Instance.PlayBGM(AudioManager.Instance.victoryTheme);
+        }
+        else
+        {
+            AudioManager.Instance.PlayBGM(AudioManager.Instance.loseTheme);
+        }
         ChangeState(GameState.GameOver);
         Time.timeScale = 0f;
     }

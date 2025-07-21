@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
@@ -49,9 +50,8 @@ public class GameSceneControl : MonoBehaviour
 
     public void ShowUpgrade()
     {
-        GameController.Instance.PauseGame();
-        upgradeUI.gameObject.SetActive(true);
-        upgradeUI.ShowRandomUpgrades(3);
+        GameController.Instance.PauseGame(); 
+        StartCoroutine(ShowUpgradeAfter(2f));
     }
     public void AddExp(int amount)
     {
@@ -64,6 +64,13 @@ public class GameSceneControl : MonoBehaviour
         expToNextLevel += 50; // Tăng dần yêu cầu EXP
         GameController.Instance.HighestLevel = currentLevel;
         ShowUpgrade();
+    }
+
+    private IEnumerator ShowUpgradeAfter(float v)
+    {
+        yield return new WaitForSecondsRealtime(v);
+        upgradeUI.gameObject.SetActive(true);
+        upgradeUI.ShowRandomUpgrades(3);
     }
 
     public void CheckExp()

@@ -48,6 +48,7 @@ public class WerebearAttackState : IState
     #region private methods
     private void Attack()
     {
+        AudioManager.Instance.PlayMelee();
         animator.SetTrigger("isAttack");
         werebear.DealDamage(werebear.target.gameObject);
     }

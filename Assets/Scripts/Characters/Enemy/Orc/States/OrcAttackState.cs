@@ -53,6 +53,7 @@ public class OrcAttackState : IState
 
     private void Attack()
     {
+        AudioManager.Instance.PlayMelee();
         orc.DealDamage(orc.target.gameObject);
     }
     #endregion

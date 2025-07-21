@@ -12,6 +12,7 @@ public class KnightKenAttackState : IState
 
     public void OnEnter()
     {
+        AudioManager.Instance.PlayMelee();
         animator.SetTrigger("Attack");
         animator.SetBool("isMoving", false);
     }

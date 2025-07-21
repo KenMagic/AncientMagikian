@@ -183,6 +183,7 @@ public class KnightKen : MonoBehaviour, IDamagable, IBlockable, IPlayerUpgrade, 
             }
             else
             {
+                AudioManager.Instance.PlayHit();
                 characterStats.CurrentHealth -= damage;
                 if (healthBar != null)
                 {
@@ -284,6 +285,7 @@ public class KnightKen : MonoBehaviour, IDamagable, IBlockable, IPlayerUpgrade, 
         {
             characterStats.CurrentHealth = characterStats.MaxHealth;
         }
+        healthBar.UpdateHealthBar(characterStats.CurrentHealth, characterStats.MaxHealth);
     }
 
 }

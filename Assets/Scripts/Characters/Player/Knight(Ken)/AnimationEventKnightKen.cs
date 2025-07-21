@@ -1,5 +1,4 @@
 using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class AnimationEventKnightKen : MonoBehaviour
@@ -35,8 +34,12 @@ public class AnimationEventKnightKen : MonoBehaviour
             if (col.CompareTag("Hitbox")) 
             {
                 var damagable = col.GetComponentInParent<IDamagable>();
-
-                damagable.TakeDamage(knightKen.GetAttackDamage());
+                if (damagable != null)
+                {
+                    damagable.TakeDamage(knightKen.GetAttackDamage());
+                    AudioManager.Instance.PlayHit();
+                }
+                
             }
         }
     }
@@ -50,7 +53,11 @@ public class AnimationEventKnightKen : MonoBehaviour
             if (col.CompareTag("Hitbox"))
             {
                 var damagable = col.GetComponentInParent<IDamagable>();
-                damagable.TakeDamage(knightKen.abilitySkill.abilityDamage);
+                                if (damagable != null)
+                {
+                    damagable.TakeDamage(knightKen.GetAttackDamage());
+                    AudioManager.Instance.PlayHit();
+                }
             }
         }
     }
@@ -68,9 +75,10 @@ public void UseUltimate()
             {
                 float duration = knightKen.ultimateSkill.StunDuration;
                 var damagable = col.GetComponentInParent<IDamagable>();
-                if (damagable != null)
+                                if (damagable != null)
                 {
-                    damagable.TakeDamage(knightKen.ultimateSkill.ultimateDamage);
+                    damagable.TakeDamage(knightKen.GetAttackDamage());
+                    AudioManager.Instance.PlayHit();
                 }
                 var buffable = col.GetComponentInParent<IBuffable>();
                 if (buffable != null)

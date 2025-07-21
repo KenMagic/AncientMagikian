@@ -10,6 +10,7 @@ public class MageKenAbilityState : IState
 
     public void OnEnter()
     {
+        AudioManager.Instance.PlayAttack();
         mageKen.animator.SetTrigger("Ability");
         mageKen.animator.SetBool("isMoving", false);
     }

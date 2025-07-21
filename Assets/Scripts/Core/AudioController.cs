@@ -1,27 +1,32 @@
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance;
 
+    [Header("Mixer")]
+    public AudioMixer audioMixer; // Gắn MainAudioMixer ở đây
 
-    [Header("BGM")]
+    [Header("Audio Sources")]
     public AudioSource bgmSource;
+    public AudioSource sfxSource;
+
+    [Header("BGM Clips")]
     public AudioClip mainTheme;
     public AudioClip battleTheme;
+    public AudioClip boss1Theme;
+    public AudioClip boss2Theme;
     public AudioClip victoryTheme;
+    public AudioClip loseTheme;
 
-    [Header("SFX")]
-    public AudioSource sfxSource;
+    [Header("SFX Clips")]
     public AudioClip attackClip;
-    public AudioClip blockClip;
+    public AudioClip meleeClip;
     public AudioClip hitClip;
     public AudioClip curseClip;
-    public AudioClip stunClip;
-
-    [Range(0f, 1f)] public float masterVolume = 1f;
-    [Range(0f, 1f)] public float bgmVolume = 1f;
-    [Range(0f, 1f)] public float sfxVolume = 1f;
+    public AudioClip clickClip;
+    public AudioClip blastClip;
 
     private void Awake()
     {
@@ -29,32 +34,29 @@ public class AudioManager : MonoBehaviour
         else Destroy(gameObject);
 
         DontDestroyOnLoad(gameObject);
-        ApplyVolumes();
+    }
+
+    // Volume từ 0–1 chuyển thành dB (-80 đến 0)
+    private float ToDecibel(float linear)
+    {
+        return linear <= 0.0001f ? -80f : Mathf.Log10(linear) * 20f;
     }
 
     public void SetMasterVolume(float value)
     {
-        masterVolume = value;
-        ApplyVolumes();
+        audioMixer.SetFloat("MasterVolume", ToDecibel(value));
     }
 
     public void SetBGMVolume(float value)
     {
-        bgmVolume = value;
-        ApplyVolumes();
+        audioMixer.SetFloat("BGMVolume", ToDecibel(value));
     }
 
     public void SetSFXVolume(float value)
     {
-        sfxVolume = value;
-        ApplyVolumes();
+        audioMixer.SetFloat("SFXVolume", ToDecibel(value));
     }
 
-    private void ApplyVolumes()
-    {
-        bgmSource.volume = masterVolume * bgmVolume;
-        sfxSource.volume = masterVolume * sfxVolume;
-    }
     public void PlayBGM(AudioClip clip, bool loop = true)
     {
         bgmSource.clip = clip;
@@ -74,12 +76,9 @@ public class AudioManager : MonoBehaviour
 
     // Shortcut methods
     public void PlayAttack() => PlaySFX(attackClip);
-    public void PlayBlock() => PlaySFX(blockClip);
+    public void PlayMelee() => PlaySFX(meleeClip);
     public void PlayHit() => PlaySFX(hitClip);
     public void PlayCurse() => PlaySFX(curseClip);
-    public void PlayStun() => PlaySFX(stunClip);
+    public void PlayClick() => PlaySFX(clickClip);
+    public void PlayBlast() => PlaySFX(blastClip);
 }
-public enum SFXType { Attack, Block, Hit, Curse, Stun }
-
-
-
