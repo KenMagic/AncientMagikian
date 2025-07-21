@@ -96,8 +96,7 @@ public class KnightKen : MonoBehaviour, IDamagable, IBlockable, IPlayerUpgrade, 
     {
         if (isDead)
         {
-            animator.SetTrigger("Death");
-            return; // Skip further updates if dead
+            return;
         }
         if (isHurt)
         {
@@ -160,6 +159,7 @@ public class KnightKen : MonoBehaviour, IDamagable, IBlockable, IPlayerUpgrade, 
             {
                 characterStats.CurrentHealth = 0; // Ensure health doesn't go below zero
                 isDead = true;
+                animator.SetTrigger("Death");
                 StartCoroutine(EndGame(1f));
             }
             else

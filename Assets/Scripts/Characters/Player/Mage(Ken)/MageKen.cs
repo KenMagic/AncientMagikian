@@ -108,8 +108,7 @@ public class MageKen : MonoBehaviour, IDamagable, IBlockable, IPlayerUpgrade, IB
         isUltimate = IsNoCoolDown;
         if (isDead)
         {
-            animator.SetTrigger("Death");
-            return; // Skip further updates if dead
+            return;
         }
         if (isHurt)
         {
@@ -172,6 +171,7 @@ public class MageKen : MonoBehaviour, IDamagable, IBlockable, IPlayerUpgrade, IB
             {
                 characterStats.CurrentHealth = 0; // Ensure health doesn't go below zero
                 isDead = true;
+                animator.SetTrigger("Death");
                 StartCoroutine(EndGame(1f));
             }
             else

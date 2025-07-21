@@ -95,7 +95,6 @@ public class OrcRiderBossKen : MonoBehaviour, IDamagable, IStunable, IBuffable
     {
         if (isDead)
         {
-            animator.SetTrigger("Death");
             Destroy(gameObject, 1f);
             return;
         }
@@ -183,6 +182,7 @@ public class OrcRiderBossKen : MonoBehaviour, IDamagable, IStunable, IBuffable
         {
             currentHealth = 0; // Ensure health doesn't go below zero
             isDead = true; // Set dead flag
+            animator.SetTrigger("Death");
             WaveManager.Instance.OnEnemyDied(enemyData.exp);
 
         }

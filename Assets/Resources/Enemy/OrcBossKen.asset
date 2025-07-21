@@ -15,6 +15,6 @@ MonoBehaviour:
   enemyName: OrcBossKen
   health: 800
   speed: 3
-  attackDamage: 60
+  attackDamage: 30
   attackCooldown: 1
   exp: 200

@@ -32,6 +32,7 @@ public class OrcBossKen : MonoBehaviour, IDamagable, IStunable, IBuffable
 
     //cooldown timer
     private float attackCooldown = 0f; // Time in seconds
+    private float attackCooldownTotal = 0f; // Time in seconds
 
     private float abilityCooldown = 0f; // Time in seconds for ability cooldown
     private float ultimateCooldown = 0f; // Time in seconds for ultimate cooldown
@@ -72,7 +73,6 @@ public class OrcBossKen : MonoBehaviour, IDamagable, IStunable, IBuffable
     {
         if (isDead)
         {
-            animator.SetTrigger("Death");
             Destroy(gameObject, 1f);
             return;
         }
@@ -86,7 +86,8 @@ public class OrcBossKen : MonoBehaviour, IDamagable, IStunable, IBuffable
         attackCooldown -= Time.deltaTime;
         abilityCooldown -= Time.deltaTime;
         ultimateCooldown -= Time.deltaTime;
-        if(IsStunned)
+        attackCooldownTotal -= Time.deltaTime;
+        if (IsStunned)
         {
             return; // Skip further updates if stunned
         }
@@ -94,8 +95,9 @@ public class OrcBossKen : MonoBehaviour, IDamagable, IStunable, IBuffable
         {
             Debug.Log("OrcBossKen is not attacking, cooldown: " + attackCooldown + ", abilityCooldown: " + abilityCooldown + ", ultimateCooldown: " + ultimateCooldown);
 
-            if (isInAttackRange)
+            if (isInAttackRange && attackCooldownTotal<=0)
             {
+                attackCooldownTotal = enemyData.attackCooldown;
                 if (ultimateCooldown <= 0f
                 && target != null
                 && target.TryGetComponent<IBuffable>(out var buffable))
@@ -160,6 +162,7 @@ public class OrcBossKen : MonoBehaviour, IDamagable, IStunable, IBuffable
         {
             currentHealth = 0; // Ensure health doesn't go below zero
             isDead = true; // Set dead flag
+            animator.SetTrigger("Death");
             WaveManager.Instance.OnEnemyDied(enemyData.exp);
         }
         // Update health bar
