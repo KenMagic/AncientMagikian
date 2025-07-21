@@ -28,6 +28,7 @@ public class KnightKen : MonoBehaviour, IDamagable, IBlockable, IPlayerUpgrade, 
     private bool isDead = false;
 
     private bool isBlocking = false;
+    private bool isOutCombat = true;
     public bool IsBlocking
     {
         get { return isBlocking; }
@@ -53,6 +54,7 @@ public class KnightKen : MonoBehaviour, IDamagable, IBlockable, IPlayerUpgrade, 
     //Skill
     public KnightKenAbilitySkill abilitySkill;
     public KnightKenUltimateSkill ultimateSkill;
+    public KnightKenPassiveSkill passiveSkill;
 
     public HealthBar healthBar; // Reference to the health bar UI
 
@@ -60,6 +62,8 @@ public class KnightKen : MonoBehaviour, IDamagable, IBlockable, IPlayerUpgrade, 
     private float abilityCooldown = 0f;
     private float ultimateCooldown = 0f;
     private float attackCooldown = 0f;
+    private float combatCooldown = 5f;
+    private float passiveCooldown = 0.2f;
 
 
     void Start()
@@ -87,6 +91,7 @@ public class KnightKen : MonoBehaviour, IDamagable, IBlockable, IPlayerUpgrade, 
         //Set up skill
         abilitySkill = new KnightKenAbilitySkill(characterStats.CurrentSkillCooldown, 1);
         ultimateSkill = new KnightKenUltimateSkill();
+        passiveSkill = new KnightKenPassiveSkill();
         animator.SetBool("isMoving", false);
         stateMachine.SetState(idleState);
     }
@@ -106,48 +111,59 @@ public class KnightKen : MonoBehaviour, IDamagable, IBlockable, IPlayerUpgrade, 
         {
             return;
         }
-        
+
         ultimateCooldown -= Time.deltaTime;
         abilityCooldown -= Time.deltaTime;
         attackCooldown -= Time.deltaTime;
-        if (!isAttacking && !IsBlocking)
+        combatCooldown -= Time.deltaTime;
+        passiveCooldown -= Time.deltaTime;
+        if (!isOutCombat && combatCooldown <=0)
         {
-
-            if (Input.GetMouseButtonDown(0) && attackCooldown<=0) // Example for attack input
-            {
-                attackCooldown = playerData.attackSpeed / (1f + characterStats.CurrentAttackSpeed);
-                isAttacking = true;
-                stateMachine.SetState(attackState);
-            }
-            else if (Input.GetMouseButtonDown(1)) // Example for block input
-            {
-                IsBlocking = true;
-                stateMachine.SetState(blockState);
-            }
-            else if (Input.GetKeyDown(KeyCode.Space) && ultimateCooldown <= 0) // Example for ability input
-            {
-                isAttacking = true;
-                ultimateCooldown = ultimateSkill.Cooldown;
-                stateMachine.SetState(ultimateState);
-            }
-            else if (Input.GetKeyDown(KeyCode.E) && abilityCooldown <= 0) // Example for ultimate input
-            {
-                isAttacking = true;
-                abilityCooldown = abilitySkill.Cooldown;
-                stateMachine.SetState(abilityState);
-            }
-            // Handle movement input and state transitions here
-            else if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))
-            {
-                stateMachine.SetState(moveState);
-            }
-
-
-            else
-            {
-                stateMachine.SetState(idleState);
-            }
+            isOutCombat = true;
         }
+        if (isOutCombat && passiveCooldown <= 0)
+            {
+                passiveCooldown = passiveSkill.Cooldown;
+                passiveSkill.Activate(gameObject, null);
+            }
+        if (!isAttacking && !IsBlocking)
+            {
+
+                if (Input.GetMouseButtonDown(0) && attackCooldown <= 0) // Example for attack input
+                {
+                    attackCooldown = playerData.attackSpeed / (1f + characterStats.CurrentAttackSpeed);
+                    isAttacking = true;
+                    stateMachine.SetState(attackState);
+                }
+                else if (Input.GetMouseButtonDown(1)) // Example for block input
+                {
+                    IsBlocking = true;
+                    stateMachine.SetState(blockState);
+                }
+                else if (Input.GetKeyDown(KeyCode.Space) && ultimateCooldown <= 0) // Example for ability input
+                {
+                    isAttacking = true;
+                    ultimateCooldown = ultimateSkill.Cooldown;
+                    stateMachine.SetState(ultimateState);
+                }
+                else if (Input.GetKeyDown(KeyCode.E) && abilityCooldown <= 0) // Example for ultimate input
+                {
+                    isAttacking = true;
+                    abilityCooldown = abilitySkill.Cooldown;
+                    stateMachine.SetState(abilityState);
+                }
+                // Handle movement input and state transitions here
+                else if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))
+                {
+                    stateMachine.SetState(moveState);
+                }
+
+
+                else
+                {
+                    stateMachine.SetState(idleState);
+                }
+            }
 
         stateMachine.Update();
     }
@@ -156,6 +172,8 @@ public class KnightKen : MonoBehaviour, IDamagable, IBlockable, IPlayerUpgrade, 
     {
         if (!IsBlocking)
         {
+            isOutCombat = false;
+            combatCooldown = 5f;
             if (characterStats.CurrentHealth <= 0 || characterStats.CurrentHealth - damage <= 0)
             {
                 characterStats.CurrentHealth = 0; // Ensure health doesn't go below zero
@@ -258,5 +276,15 @@ public class KnightKen : MonoBehaviour, IDamagable, IBlockable, IPlayerUpgrade, 
         yield return new WaitForSeconds(v);
         GameController.Instance.GameOver();
     }
+    public void Heal(float amount)
+    {
+        if (characterStats.CurrentHealth == characterStats.MaxHealth) return;
+        characterStats.CurrentHealth += amount;
+        if (characterStats.CurrentHealth > characterStats.MaxHealth)
+        {
+            characterStats.CurrentHealth = characterStats.MaxHealth;
+        }
+    }
+
 }
 

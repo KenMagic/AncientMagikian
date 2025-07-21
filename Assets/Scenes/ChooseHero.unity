@@ -1128,13 +1128,11 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 976f425d8b7bcc844b3dbf3bf08d2075, type: 2}
     - {fileID: 11400000, guid: 0fab19fefe628374ca34ac82ed8c3e6c, type: 2}
     - {fileID: 11400000, guid: 947563ec5cf564f4b9c248dad3c90d19, type: 2}
-    - {fileID: 11400000, guid: 947563ec5cf564f4b9c248dad3c90d19, type: 2}
     - {fileID: 11400000, guid: 4ba588eaae9f59440a49d8dfbf564c4c, type: 2}
     - {fileID: 11400000, guid: 3261e6442de8b2349a02cdfe3dacf019, type: 2}
     - {fileID: 11400000, guid: d240e228c6e79814795acfd1b8e5633c, type: 2}
     - {fileID: 11400000, guid: 64efc1559e589a24c872ae312afa491e, type: 2}
     - {fileID: 11400000, guid: 9a3c77ebac083ad46b31d0d88c1155fb, type: 2}
-    - {fileID: 11400000, guid: 64efc1559e589a24c872ae312afa491e, type: 2}
     - {fileID: 11400000, guid: 204d8cffba612d340a42c971918c1f57, type: 2}
     - {fileID: 11400000, guid: 8527884f9e16f434785a9b711bc67882, type: 2}
     - {fileID: 11400000, guid: 05f624b4f614ca247b7f3be942df0b78, type: 2}
@@ -1153,6 +1151,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: ab91c71904c278a47a355579985e29d9, type: 2}
     - {fileID: 11400000, guid: 89c61ee854290df45a1b323e2f491dfc, type: 2}
     - {fileID: 11400000, guid: 2e71b5595d5d28b4ebade2352308fe6f, type: 2}
+    - {fileID: 11400000, guid: cd943857a970789419cdcc3cb11adef9, type: 2}
   - playerSO: {fileID: 11400000, guid: e9b46a8c0e51000439dd0c21eada4cfc, type: 2}
     upgrades:
     - {fileID: 11400000, guid: 2f382a89c1d246c4f99c9d5a6dcc768e, type: 2}
@@ -1187,6 +1186,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: ab91c71904c278a47a355579985e29d9, type: 2}
     - {fileID: 11400000, guid: 48f5f6b2f410320478b9f9d9a8eb0538, type: 2}
     - {fileID: 11400000, guid: edf8007a321b07249b8a2eee5e292f3e, type: 2}
+    - {fileID: 11400000, guid: 01f281d91821ba5438f9858f980a887a, type: 2}
   thumbnailPrefab: {fileID: 6405302423844949967, guid: d9612c9ec3a028942aa4fffb36e78e21, type: 3}
   thumbnailParent: {fileID: 2001224566}
   detailDisplay: {fileID: 1745652791}
