@@ -117,6 +117,7 @@ public class Orc : MonoBehaviour, IDamagable
     private IEnumerator HideCoroutine(float delay)
     {
         yield return new WaitForSeconds(delay);
+        OrcPool.Instance.ReturnObject(gameObject);
     }
 
     private IEnumerator ForgetTargetAfterDelay(float delay)

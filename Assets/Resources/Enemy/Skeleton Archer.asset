@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Skeleton Archer
   m_EditorClassIdentifier: 
   enemyName: Skeleton Archer
-  health: 150
+  health: 120
   speed: 0.75
   attackDamage: 30
   attackCooldown: 4

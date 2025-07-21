@@ -16,17 +16,17 @@ MonoBehaviour:
   - enemyPrefab: {fileID: 9065170433026740802, guid: cf8103d99990020418b33b421d525a29, type: 3}
     type: 0
     count: 20
-    spawnInterval: 3.5
+    spawnInterval: 2
   - enemyPrefab: {fileID: 6213383173839415395, guid: b08d000bcceafc94caba8f48bc1f0b42, type: 3}
     type: 0
     count: 10
-    spawnInterval: 4
+    spawnInterval: 3
   - enemyPrefab: {fileID: 1061233826449729696, guid: 5620d7fbcf2a9c1498d4a2ee33464817, type: 3}
     type: 3
     count: 15
-    spawnInterval: 4.5
+    spawnInterval: 3.5
   - enemyPrefab: {fileID: 4507714591334294003, guid: b9861e396a085004486239aae74bcd65, type: 3}
     type: 4
     count: 10
-    spawnInterval: 3.8
+    spawnInterval: 3
   delayAfterWave: 5
