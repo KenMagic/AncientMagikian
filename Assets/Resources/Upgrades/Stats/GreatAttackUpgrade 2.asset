@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: GreatAttackUpgrade 2
   m_EditorClassIdentifier: 
   upgradeName: Attack
-  description: Atk+17
+  description: Atk+33
   icon: {fileID: 4441906578842279691, guid: 25d9f81f660f87843a8c39dc6852d2ba, type: 3}
   upgradeType: 2
   statToUpgrade: 0
-  value: 17
+  value: 33

@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: OrcBossKen
   m_EditorClassIdentifier: 
   enemyName: OrcBossKen
-  health: 800
-  speed: 3
-  attackDamage: 30
+  health: 5000
+  speed: 5
+  attackDamage: 50
   attackCooldown: 1
-  exp: 200
+  exp: 300

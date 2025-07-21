@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: MediumAttackUpgrade 2
   m_EditorClassIdentifier: 
   upgradeName: Attack
-  description: 'Atk+11
+  description: 'Atk+23
 
 '
   icon: {fileID: -8336339887504312587, guid: 25d9f81f660f87843a8c39dc6852d2ba, type: 3}
   upgradeType: 1
   statToUpgrade: 0
-  value: 11
+  value: 23

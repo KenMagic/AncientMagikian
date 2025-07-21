@@ -17,4 +17,4 @@ MonoBehaviour:
   speed: 0.75
   attackDamage: 30
   attackCooldown: 4
-  exp: 12
+  exp: 30
