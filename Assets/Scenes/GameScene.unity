@@ -551,13 +551,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waves:
+  - {fileID: 11400000, guid: 9f26fe1b6e26b304d85c492767c596e2, type: 2}
   - {fileID: 11400000, guid: 7efc89bf0b5d3f54d8d5f82fff952e3f, type: 2}
   - {fileID: 11400000, guid: 39a125a6eac817a4b9a7a0deb73cbb2b, type: 2}
   - {fileID: 11400000, guid: f60ec01796ba5294a884c1da21af3711, type: 2}
   - {fileID: 11400000, guid: 30925ba37ff623b41806d4621fd08b63, type: 2}
   - {fileID: 11400000, guid: 28b74fbe71f97d24386e7e93a8b19475, type: 2}
   - {fileID: 11400000, guid: c8fab6cd898883f4693b828f93ddbf0c, type: 2}
-  - {fileID: 11400000, guid: 9f26fe1b6e26b304d85c492767c596e2, type: 2}
   - {fileID: 11400000, guid: ad2515526e356c7408ba02e60692a9cb, type: 2}
   - {fileID: 11400000, guid: 4f59b782d30034b40908653e083ccc6e, type: 2}
   spawnPoint: {fileID: 1002114396}
